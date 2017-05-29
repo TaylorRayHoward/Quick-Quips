@@ -1,0 +1,582 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		38DBFA754869482211BACD6C /* Pods_Quick_QuipsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508E9EFC0315EAC5CD0A49BE /* Pods_Quick_QuipsTests.framework */; };
+		3E4BE53C93DB0629A9E1A9A1 /* Pods_Quick_Quips.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 079B5A3BE10812E490ECB50C /* Pods_Quick_Quips.framework */; };
+		5965B4631EDCC6500059E612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5965B4621EDCC6500059E612 /* AppDelegate.swift */; };
+		5965B4651EDCC6500059E612 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5965B4641EDCC6500059E612 /* ViewController.swift */; };
+		5965B4681EDCC6500059E612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5965B4661EDCC6500059E612 /* Main.storyboard */; };
+		5965B46A1EDCC6500059E612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5965B4691EDCC6500059E612 /* Assets.xcassets */; };
+		5965B46D1EDCC6500059E612 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5965B46B1EDCC6500059E612 /* LaunchScreen.storyboard */; };
+		5965B4781EDCC6500059E612 /* Quick_QuipsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5965B4771EDCC6500059E612 /* Quick_QuipsTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5965B4741EDCC6500059E612 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5965B4571EDCC6500059E612 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5965B45E1EDCC6500059E612;
+			remoteInfo = "Quick Quips";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		079B5A3BE10812E490ECB50C /* Pods_Quick_Quips.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quick_Quips.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		25FCFD4AB0AF67BB3494851B /* Pods-Quick Quips.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick Quips.release.xcconfig"; path = "Pods/Target Support Files/Pods-Quick Quips/Pods-Quick Quips.release.xcconfig"; sourceTree = "<group>"; };
+		508E9EFC0315EAC5CD0A49BE /* Pods_Quick_QuipsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quick_QuipsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5965B45F1EDCC6500059E612 /* Quick Quips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quick Quips.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5965B4621EDCC6500059E612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5965B4641EDCC6500059E612 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5965B4671EDCC6500059E612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5965B4691EDCC6500059E612 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5965B46C1EDCC6500059E612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5965B46E1EDCC6500059E612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5965B4731EDCC6500059E612 /* Quick QuipsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Quick QuipsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5965B4771EDCC6500059E612 /* Quick_QuipsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quick_QuipsTests.swift; sourceTree = "<group>"; };
+		5965B4791EDCC6500059E612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91DBBE45D713F7B4F0E9737B /* Pods-Quick Quips.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick Quips.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Quick Quips/Pods-Quick Quips.debug.xcconfig"; sourceTree = "<group>"; };
+		A01DCD12621C52B9738668C4 /* Pods-Quick QuipsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick QuipsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Quick QuipsTests/Pods-Quick QuipsTests.release.xcconfig"; sourceTree = "<group>"; };
+		F355F322A9FC91FA92E9A5DD /* Pods-Quick QuipsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick QuipsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Quick QuipsTests/Pods-Quick QuipsTests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5965B45C1EDCC6500059E612 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E4BE53C93DB0629A9E1A9A1 /* Pods_Quick_Quips.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5965B4701EDCC6500059E612 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38DBFA754869482211BACD6C /* Pods_Quick_QuipsTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B80B78718049A570F045858 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				91DBBE45D713F7B4F0E9737B /* Pods-Quick Quips.debug.xcconfig */,
+				25FCFD4AB0AF67BB3494851B /* Pods-Quick Quips.release.xcconfig */,
+				F355F322A9FC91FA92E9A5DD /* Pods-Quick QuipsTests.debug.xcconfig */,
+				A01DCD12621C52B9738668C4 /* Pods-Quick QuipsTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		592985931EDCC822006162EB /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5965B4641EDCC6500059E612 /* ViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		592985941EDCC82A006162EB /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				5965B4661EDCC6500059E612 /* Main.storyboard */,
+				5965B46B1EDCC6500059E612 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		5965B4561EDCC6500059E612 = {
+			isa = PBXGroup;
+			children = (
+				5965B4611EDCC6500059E612 /* Quick Quips */,
+				5965B4761EDCC6500059E612 /* Quick QuipsTests */,
+				5965B4601EDCC6500059E612 /* Products */,
+				2B80B78718049A570F045858 /* Pods */,
+				C6A8D9F6CD6367DFA46130C1 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		5965B4601EDCC6500059E612 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5965B45F1EDCC6500059E612 /* Quick Quips.app */,
+				5965B4731EDCC6500059E612 /* Quick QuipsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5965B4611EDCC6500059E612 /* Quick Quips */ = {
+			isa = PBXGroup;
+			children = (
+				5965B4691EDCC6500059E612 /* Assets.xcassets */,
+				5965B46E1EDCC6500059E612 /* Info.plist */,
+				5965B4621EDCC6500059E612 /* AppDelegate.swift */,
+				592985941EDCC82A006162EB /* Storyboards */,
+				592985931EDCC822006162EB /* ViewControllers */,
+			);
+			path = "Quick Quips";
+			sourceTree = "<group>";
+		};
+		5965B4761EDCC6500059E612 /* Quick QuipsTests */ = {
+			isa = PBXGroup;
+			children = (
+				5965B4771EDCC6500059E612 /* Quick_QuipsTests.swift */,
+				5965B4791EDCC6500059E612 /* Info.plist */,
+			);
+			path = "Quick QuipsTests";
+			sourceTree = "<group>";
+		};
+		C6A8D9F6CD6367DFA46130C1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				079B5A3BE10812E490ECB50C /* Pods_Quick_Quips.framework */,
+				508E9EFC0315EAC5CD0A49BE /* Pods_Quick_QuipsTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5965B45E1EDCC6500059E612 /* Quick Quips */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5965B47C1EDCC6500059E612 /* Build configuration list for PBXNativeTarget "Quick Quips" */;
+			buildPhases = (
+				4ED4F005D700842C7BDC9F3E /* [CP] Check Pods Manifest.lock */,
+				5965B45B1EDCC6500059E612 /* Sources */,
+				5965B45C1EDCC6500059E612 /* Frameworks */,
+				5965B45D1EDCC6500059E612 /* Resources */,
+				FA93281020B1028B06B48EB7 /* [CP] Embed Pods Frameworks */,
+				39916BEEAF08C165571BA894 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Quick Quips";
+			productName = "Quick Quips";
+			productReference = 5965B45F1EDCC6500059E612 /* Quick Quips.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5965B4721EDCC6500059E612 /* Quick QuipsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5965B47F1EDCC6500059E612 /* Build configuration list for PBXNativeTarget "Quick QuipsTests" */;
+			buildPhases = (
+				B4318181A84D0994651C4F73 /* [CP] Check Pods Manifest.lock */,
+				5965B46F1EDCC6500059E612 /* Sources */,
+				5965B4701EDCC6500059E612 /* Frameworks */,
+				5965B4711EDCC6500059E612 /* Resources */,
+				5E4EE2AFDBF528EB869C7430 /* [CP] Embed Pods Frameworks */,
+				070BE1652D1BB858BC049857 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5965B4751EDCC6500059E612 /* PBXTargetDependency */,
+			);
+			name = "Quick QuipsTests";
+			productName = "Quick QuipsTests";
+			productReference = 5965B4731EDCC6500059E612 /* Quick QuipsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5965B4571EDCC6500059E612 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Taylor Howard";
+				TargetAttributes = {
+					5965B45E1EDCC6500059E612 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = GMBUTMZ22C;
+						ProvisioningStyle = Automatic;
+					};
+					5965B4721EDCC6500059E612 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = GMBUTMZ22C;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 5965B45E1EDCC6500059E612;
+					};
+				};
+			};
+			buildConfigurationList = 5965B45A1EDCC6500059E612 /* Build configuration list for PBXProject "Quick Quips" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5965B4561EDCC6500059E612;
+			productRefGroup = 5965B4601EDCC6500059E612 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5965B45E1EDCC6500059E612 /* Quick Quips */,
+				5965B4721EDCC6500059E612 /* Quick QuipsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5965B45D1EDCC6500059E612 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5965B46D1EDCC6500059E612 /* LaunchScreen.storyboard in Resources */,
+				5965B46A1EDCC6500059E612 /* Assets.xcassets in Resources */,
+				5965B4681EDCC6500059E612 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5965B4711EDCC6500059E612 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		070BE1652D1BB858BC049857 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Quick QuipsTests/Pods-Quick QuipsTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		39916BEEAF08C165571BA894 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Quick Quips/Pods-Quick Quips-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4ED4F005D700842C7BDC9F3E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5E4EE2AFDBF528EB869C7430 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Quick QuipsTests/Pods-Quick QuipsTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B4318181A84D0994651C4F73 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FA93281020B1028B06B48EB7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Quick Quips/Pods-Quick Quips-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5965B45B1EDCC6500059E612 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5965B4651EDCC6500059E612 /* ViewController.swift in Sources */,
+				5965B4631EDCC6500059E612 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5965B46F1EDCC6500059E612 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5965B4781EDCC6500059E612 /* Quick_QuipsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5965B4751EDCC6500059E612 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5965B45E1EDCC6500059E612 /* Quick Quips */;
+			targetProxy = 5965B4741EDCC6500059E612 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5965B4661EDCC6500059E612 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5965B4671EDCC6500059E612 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5965B46B1EDCC6500059E612 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5965B46C1EDCC6500059E612 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5965B47A1EDCC6500059E612 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5965B47B1EDCC6500059E612 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5965B47D1EDCC6500059E612 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91DBBE45D713F7B4F0E9737B /* Pods-Quick Quips.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GMBUTMZ22C;
+				INFOPLIST_FILE = "Quick Quips/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.taylorrayhoward.iOS.Quick-Quips";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		5965B47E1EDCC6500059E612 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25FCFD4AB0AF67BB3494851B /* Pods-Quick Quips.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GMBUTMZ22C;
+				INFOPLIST_FILE = "Quick Quips/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.taylorrayhoward.iOS.Quick-Quips";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		5965B4801EDCC6500059E612 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F355F322A9FC91FA92E9A5DD /* Pods-Quick QuipsTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = GMBUTMZ22C;
+				INFOPLIST_FILE = "Quick QuipsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.taylorrayhoward.iOS.Quick-QuipsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Quick Quips.app/Quick Quips";
+			};
+			name = Debug;
+		};
+		5965B4811EDCC6500059E612 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A01DCD12621C52B9738668C4 /* Pods-Quick QuipsTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = GMBUTMZ22C;
+				INFOPLIST_FILE = "Quick QuipsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.taylorrayhoward.iOS.Quick-QuipsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Quick Quips.app/Quick Quips";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5965B45A1EDCC6500059E612 /* Build configuration list for PBXProject "Quick Quips" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5965B47A1EDCC6500059E612 /* Debug */,
+				5965B47B1EDCC6500059E612 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5965B47C1EDCC6500059E612 /* Build configuration list for PBXNativeTarget "Quick Quips" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5965B47D1EDCC6500059E612 /* Debug */,
+				5965B47E1EDCC6500059E612 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5965B47F1EDCC6500059E612 /* Build configuration list for PBXNativeTarget "Quick QuipsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5965B4801EDCC6500059E612 /* Debug */,
+				5965B4811EDCC6500059E612 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5965B4571EDCC6500059E612 /* Project object */;
+}
