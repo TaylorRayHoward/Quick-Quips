@@ -37,4 +37,8 @@ class DBHelper {
             }
         }
     }
+    
+    func getQuips() -> Results<Quip> {
+        return realm.objects(Quip.self)
+    }
 }

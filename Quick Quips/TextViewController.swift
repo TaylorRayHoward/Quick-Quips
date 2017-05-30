@@ -9,15 +9,19 @@
 import UIKit
 import RealmSwift
 
-class TextViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TextViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     @IBOutlet weak var quipsTableView: UITableView!
     
     var quips: Results<Object>!
-
+    var filtered: Results<Object>!
+    let searchBar = UISearchBar()
+    var shouldShowSearchResults = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         quipsTableView.delegate = self
         quipsTableView.dataSource = self
+        searchBar.delegate = self
         reload()
         addSearchBar()
     }
@@ -27,7 +31,6 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func addSearchBar() {
-        let searchBar = UISearchBar()
         searchBar.showsCancelButton = false
         searchBar.placeholder = "Search..."
         self.navigationItem.titleView = searchBar
@@ -37,12 +40,19 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return quips.count
+        if shouldShowSearchResults { return filtered.count }
+        else { return quips.count }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = quipsTableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! TextCell
-        let quip = quips[indexPath.row] as! Quip
+        let quip: Quip
+        if shouldShowSearchResults {
+            quip = filtered[indexPath.row] as! Quip
+        }
+        else {
+           quip = quips[indexPath.row] as! Quip
+        }
         cell.nameLabel.text = quip.name
         cell.quipLabel.text = quip.text
         return cell
@@ -54,9 +64,36 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
         quipsTableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func reload() {
-        quips = DBHelper.sharedInstance.getAll(ofType: Quip.self)
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.endEditing(true)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        shouldShowSearchResults = true
         self.quipsTableView.reloadData()
+    }
+    
+    func reload(_ searchText: String? = nil) {
+        if shouldShowSearchResults {
+            filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("name CONTAINS[c] %@", searchText!)
+        }
+        else {
+            quips = DBHelper.sharedInstance.getAll(ofType: Quip.self)
+        }
+        
+        self.quipsTableView.reloadData()
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText != "" {
+            shouldShowSearchResults = true
+            reload(searchText)
+        }
+        else {
+            shouldShowSearchResults = false
+            reload()
+        }
     }
 
 }
