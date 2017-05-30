@@ -10,11 +10,17 @@
 		38DBFA754869482211BACD6C /* Pods_Quick_QuipsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508E9EFC0315EAC5CD0A49BE /* Pods_Quick_QuipsTests.framework */; };
 		3E4BE53C93DB0629A9E1A9A1 /* Pods_Quick_Quips.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 079B5A3BE10812E490ECB50C /* Pods_Quick_Quips.framework */; };
 		5965B4631EDCC6500059E612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5965B4621EDCC6500059E612 /* AppDelegate.swift */; };
-		5965B4651EDCC6500059E612 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5965B4641EDCC6500059E612 /* ViewController.swift */; };
+		5965B4651EDCC6500059E612 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5965B4641EDCC6500059E612 /* TextViewController.swift */; };
 		5965B4681EDCC6500059E612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5965B4661EDCC6500059E612 /* Main.storyboard */; };
 		5965B46A1EDCC6500059E612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5965B4691EDCC6500059E612 /* Assets.xcassets */; };
 		5965B46D1EDCC6500059E612 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5965B46B1EDCC6500059E612 /* LaunchScreen.storyboard */; };
 		5965B4781EDCC6500059E612 /* Quick_QuipsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5965B4771EDCC6500059E612 /* Quick_QuipsTests.swift */; };
+		59A643191EDD033C0075778E /* Quip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A643181EDD033C0075778E /* Quip.swift */; };
+		59A6431B1EDD0BEE0075778E /* TableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A6431A1EDD0BEE0075778E /* TableCells.swift */; };
+		59A6431D1EDD125D0075778E /* EditTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A6431C1EDD125D0075778E /* EditTextViewController.swift */; };
+		BA9C737A1957B5FCE5595DBD /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9C723589F0F354E6D5F704 /* PictureViewController.swift */; };
+		BA9C7D1541A30B6DD8C32858 /* CreateTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9C70175C9E7928743CD020 /* CreateTextViewController.swift */; };
+		BA9C7E710E526436E4A85C1D /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9C7D036E280F1D81BE1836 /* DBHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +39,7 @@
 		508E9EFC0315EAC5CD0A49BE /* Pods_Quick_QuipsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quick_QuipsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5965B45F1EDCC6500059E612 /* Quick Quips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quick Quips.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5965B4621EDCC6500059E612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5965B4641EDCC6500059E612 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5965B4641EDCC6500059E612 /* TextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		5965B4671EDCC6500059E612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5965B4691EDCC6500059E612 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5965B46C1EDCC6500059E612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -41,8 +47,14 @@
 		5965B4731EDCC6500059E612 /* Quick QuipsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Quick QuipsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5965B4771EDCC6500059E612 /* Quick_QuipsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quick_QuipsTests.swift; sourceTree = "<group>"; };
 		5965B4791EDCC6500059E612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		59A643181EDD033C0075778E /* Quip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quip.swift; sourceTree = "<group>"; };
+		59A6431A1EDD0BEE0075778E /* TableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCells.swift; sourceTree = "<group>"; };
+		59A6431C1EDD125D0075778E /* EditTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextViewController.swift; sourceTree = "<group>"; };
 		91DBBE45D713F7B4F0E9737B /* Pods-Quick Quips.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick Quips.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Quick Quips/Pods-Quick Quips.debug.xcconfig"; sourceTree = "<group>"; };
 		A01DCD12621C52B9738668C4 /* Pods-Quick QuipsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick QuipsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Quick QuipsTests/Pods-Quick QuipsTests.release.xcconfig"; sourceTree = "<group>"; };
+		BA9C70175C9E7928743CD020 /* CreateTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTextViewController.swift; sourceTree = "<group>"; };
+		BA9C723589F0F354E6D5F704 /* PictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
+		BA9C7D036E280F1D81BE1836 /* DBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBHelper.swift; sourceTree = "<group>"; };
 		F355F322A9FC91FA92E9A5DD /* Pods-Quick QuipsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick QuipsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Quick QuipsTests/Pods-Quick QuipsTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,7 +92,10 @@
 		592985931EDCC822006162EB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				5965B4641EDCC6500059E612 /* ViewController.swift */,
+				5965B4641EDCC6500059E612 /* TextViewController.swift */,
+				BA9C723589F0F354E6D5F704 /* PictureViewController.swift */,
+				BA9C70175C9E7928743CD020 /* CreateTextViewController.swift */,
+				59A6431C1EDD125D0075778E /* EditTextViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -88,8 +103,8 @@
 		592985941EDCC82A006162EB /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				5965B4661EDCC6500059E612 /* Main.storyboard */,
 				5965B46B1EDCC6500059E612 /* LaunchScreen.storyboard */,
+				5965B4661EDCC6500059E612 /* Main.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -120,8 +135,10 @@
 				5965B4691EDCC6500059E612 /* Assets.xcassets */,
 				5965B46E1EDCC6500059E612 /* Info.plist */,
 				5965B4621EDCC6500059E612 /* AppDelegate.swift */,
+				59A643171EDD03290075778E /* Objects */,
 				592985941EDCC82A006162EB /* Storyboards */,
 				592985931EDCC822006162EB /* ViewControllers */,
+				BA9C7D036E280F1D81BE1836 /* DBHelper.swift */,
 			);
 			path = "Quick Quips";
 			sourceTree = "<group>";
@@ -133,6 +150,15 @@
 				5965B4791EDCC6500059E612 /* Info.plist */,
 			);
 			path = "Quick QuipsTests";
+			sourceTree = "<group>";
+		};
+		59A643171EDD03290075778E /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				59A643181EDD033C0075778E /* Quip.swift */,
+				59A6431A1EDD0BEE0075778E /* TableCells.swift */,
+			);
+			name = Objects;
 			sourceTree = "<group>";
 		};
 		C6A8D9F6CD6367DFA46130C1 /* Frameworks */ = {
@@ -348,8 +374,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5965B4651EDCC6500059E612 /* ViewController.swift in Sources */,
+				5965B4651EDCC6500059E612 /* TextViewController.swift in Sources */,
+				59A6431D1EDD125D0075778E /* EditTextViewController.swift in Sources */,
 				5965B4631EDCC6500059E612 /* AppDelegate.swift in Sources */,
+				59A643191EDD033C0075778E /* Quip.swift in Sources */,
+				BA9C7E710E526436E4A85C1D /* DBHelper.swift in Sources */,
+				BA9C737A1957B5FCE5595DBD /* PictureViewController.swift in Sources */,
+				59A6431B1EDD0BEE0075778E /* TableCells.swift in Sources */,
+				BA9C7D1541A30B6DD8C32858 /* CreateTextViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
