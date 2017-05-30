@@ -76,7 +76,8 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func reload(_ searchText: String? = nil) {
         if shouldShowSearchResults {
-            filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("name CONTAINS[c] %@", searchText!)
+            let predicate = NSPredicate(format: "name CONTAINS[c] %@ OR type CONTAINS[c] %@", searchText!, searchText!)
+            filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter(predicate)
         }
         else {
             quips = DBHelper.sharedInstance.getAll(ofType: Quip.self)
