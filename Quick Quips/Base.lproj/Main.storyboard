@@ -313,7 +313,7 @@
         <scene sceneID="uth-fP-DgQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Fzf-H8-aPV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Pictures" id="HoQ-Cn-iZt"/>
+                    <tabBarItem key="tabBarItem" title="Pictures" image="Picture-50" selectedImage="Picture Filled-50" id="HoQ-Cn-iZt"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Nzw-Ae-12b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -350,5 +350,7 @@
     <resources>
         <image name="Generic Text Filled-75" width="25" height="25"/>
         <image name="Generic Text-75" width="25" height="25"/>
+        <image name="Picture Filled-50" width="25" height="25"/>
+        <image name="Picture-50" width="25" height="25"/>
     </resources>
 </document>
