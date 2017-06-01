@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import Toaster
 
 class TextViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     @IBOutlet weak var quipsTableView: UITableView!
@@ -55,6 +56,7 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         cell.nameLabel.text = quip.name
         cell.quipLabel.text = quip.text
+        cell.categoryLabel.text = quip.type
         return cell
     }
     
@@ -62,6 +64,7 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = quipsTableView.cellForRow(at: indexPath) as! TextCell
         UIPasteboard.general.string = cell.quipLabel.text!
         quipsTableView.deselectRow(at: indexPath, animated: true)
+        Toast(text: "Copied!", duration: Delay.short).show()
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

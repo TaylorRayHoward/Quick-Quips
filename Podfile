@@ -3,6 +3,7 @@ inhibit_all_warnings!
 target 'Quick Quips' do
     use_frameworks!
     pod 'RealmSwift'
+    pod 'Toaster'
 end
 target 'Quick QuipsTests' do
     use_frameworks!

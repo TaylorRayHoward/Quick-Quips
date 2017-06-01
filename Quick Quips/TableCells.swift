@@ -11,6 +11,7 @@ import UIKit
 class TextCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var quipLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
 }
 
 class EditCell: UITableViewCell {

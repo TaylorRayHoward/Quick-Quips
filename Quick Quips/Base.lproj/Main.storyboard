@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -53,44 +54,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zTO-ly-d0I">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zTO-ly-d0I">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TextCell" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextCell" id="a5a-be-UTA" customClass="TextCell" customModule="Quick_Quips" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TextCell" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextCell" rowHeight="90" id="a5a-be-UTA" customClass="TextCell" customModule="Quick_Quips" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a5a-be-UTA" id="ADC-fO-4tg">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ci3-G9-fiJ">
-                                                    <rect key="frame" x="8" y="8" width="75" height="27.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Ci3-G9-fiJ">
+                                                    <rect key="frame" x="8" y="8" width="171" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="75" id="3qZ-AZ-B0Z"/>
+                                                        <constraint firstAttribute="height" constant="20" id="C32-Rm-E5G"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUW-g4-Ent">
-                                                    <rect key="frame" x="91" y="8" width="243" height="27.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="QUW-g4-Ent">
+                                                    <rect key="frame" x="8" y="36" width="334" height="53.5"/>
+                                                    <string key="text">this here be a test of teh textthis here be a test of teh textthis here be a test of teh textthis here be a test of teh textthis here be a test of teh textthis here be a test of teh textthis here be a test of teh textthis here be a test of teh textthis here be a test of teh textthis here be a test of teh textthis here be a test of teh text</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.72156862749999995" green="0.72156862749999995" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="7bb-p6-6Kj">
+                                                    <rect key="frame" x="163" y="8" width="171" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="7YM-F6-8Ay"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Ci3-G9-fiJ" firstAttribute="leading" secondItem="ADC-fO-4tg" secondAttribute="leadingMargin" id="2VP-BX-dLR"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="QUW-g4-Ent" secondAttribute="trailing" id="5cZ-7h-fdE"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="QUW-g4-Ent" secondAttribute="bottom" id="KzM-qx-Y7a"/>
-                                                <constraint firstItem="QUW-g4-Ent" firstAttribute="top" secondItem="ADC-fO-4tg" secondAttribute="topMargin" id="SOs-c4-SbG"/>
-                                                <constraint firstItem="QUW-g4-Ent" firstAttribute="leading" secondItem="Ci3-G9-fiJ" secondAttribute="trailing" constant="8" id="Wz7-So-oAd"/>
-                                                <constraint firstItem="Ci3-G9-fiJ" firstAttribute="top" secondItem="ADC-fO-4tg" secondAttribute="topMargin" id="qWC-uS-CLd"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Ci3-G9-fiJ" secondAttribute="bottom" id="xSO-wO-DTA"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="7bb-p6-6Kj" secondAttribute="trailing" id="IuF-CD-rox"/>
+                                                <constraint firstItem="Ci3-G9-fiJ" firstAttribute="width" secondItem="ADC-fO-4tg" secondAttribute="width" multiplier="0.5" id="Kwt-HV-ChJ"/>
+                                                <constraint firstItem="Ci3-G9-fiJ" firstAttribute="leading" secondItem="ADC-fO-4tg" secondAttribute="leadingMargin" id="SAS-Z0-Osw"/>
+                                                <constraint firstItem="QUW-g4-Ent" firstAttribute="top" secondItem="Ci3-G9-fiJ" secondAttribute="bottom" constant="8" id="Uex-fL-V2d"/>
+                                                <constraint firstItem="7bb-p6-6Kj" firstAttribute="width" secondItem="ADC-fO-4tg" secondAttribute="width" multiplier="0.5" id="VC5-Uw-AFy"/>
+                                                <constraint firstItem="7bb-p6-6Kj" firstAttribute="top" secondItem="ADC-fO-4tg" secondAttribute="topMargin" id="Vy2-gy-yNi"/>
+                                                <constraint firstAttribute="bottom" secondItem="QUW-g4-Ent" secondAttribute="bottom" id="ePu-zf-MNJ"/>
+                                                <constraint firstItem="Ci3-G9-fiJ" firstAttribute="top" secondItem="ADC-fO-4tg" secondAttribute="topMargin" id="qQg-Jm-gFf"/>
+                                                <constraint firstItem="QUW-g4-Ent" firstAttribute="leading" secondItem="ADC-fO-4tg" secondAttribute="leading" constant="8" id="vFP-R1-BVW"/>
+                                                <constraint firstAttribute="trailing" secondItem="QUW-g4-Ent" secondAttribute="trailing" id="xeL-cT-eWk"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="categoryLabel" destination="7bb-p6-6Kj" id="Gs8-i0-lsf"/>
                                             <outlet property="nameLabel" destination="Ci3-G9-fiJ" id="Swz-vH-SG6"/>
                                             <outlet property="quipLabel" destination="QUW-g4-Ent" id="I06-ns-9zq"/>
                                         </connections>
