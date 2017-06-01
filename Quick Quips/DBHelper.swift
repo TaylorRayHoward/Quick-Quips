@@ -41,4 +41,10 @@ class DBHelper {
     func getQuips() -> Results<Quip> {
         return realm.objects(Quip.self)
     }
+    
+    func deleteObject(_ object: [Object]) {
+        try! realm.write {
+            realm.delete(object)
+        }
+    }
 }

@@ -70,7 +70,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="C32-Rm-E5G"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -86,7 +86,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="7YM-F6-8Ay"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -294,7 +294,7 @@
         <scene sceneID="oCF-RY-SVK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="toq-zQ-Kcq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Text" id="Adj-qP-FZx"/>
+                    <tabBarItem key="tabBarItem" title="Text" image="Generic Text-75" selectedImage="Generic Text Filled-75" id="Adj-qP-FZx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="w3o-eV-BZd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -347,4 +347,8 @@
             <point key="canvasLocation" x="4004" y="-737.18140929535241"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Generic Text Filled-75" width="25" height="25"/>
+        <image name="Generic Text-75" width="25" height="25"/>
+    </resources>
 </document>

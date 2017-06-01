@@ -77,9 +77,9 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.quipsTableView.reloadData()
     }
     
-    func reload(_ searchText: String? = nil) {
+    func reload() {
         if shouldShowSearchResults {
-            let predicate = NSPredicate(format: "name CONTAINS[c] %@ OR type CONTAINS[c] %@", searchText!, searchText!)
+            let predicate = NSPredicate(format: "name CONTAINS[c] %@ OR type CONTAINS[c] %@", searchBar.text!, searchBar.text!)
             filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter(predicate)
         }
         else {
@@ -92,10 +92,19 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText != "" {
             shouldShowSearchResults = true
-            reload(searchText)
+            reload()
         }
         else {
             shouldShowSearchResults = false
+            reload()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let cell = tableView.cellForRow(at: indexPath) as! TextCell
+            let deleteQuip = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("name = %@", cell.nameLabel.text!).first!
+            DBHelper.sharedInstance.deleteObject([deleteQuip])
             reload()
         }
     }
