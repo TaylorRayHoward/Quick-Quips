@@ -61,7 +61,4 @@ class EditTextViewController: UITableViewController {
         navigationController?.popViewController(animated: true)
         dismiss(animated: true)
     }
-    @IBAction func saveButton(_ sender: UIBarButtonItem) {
-        
-    }
 }

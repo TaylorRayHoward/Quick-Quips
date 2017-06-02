@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		38DBFA754869482211BACD6C /* Pods_Quick_QuipsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508E9EFC0315EAC5CD0A49BE /* Pods_Quick_QuipsTests.framework */; };
 		3E4BE53C93DB0629A9E1A9A1 /* Pods_Quick_Quips.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 079B5A3BE10812E490ECB50C /* Pods_Quick_Quips.framework */; };
+		5907101F1EE0EB73005570D6 /* CreatePictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5907101E1EE0EB73005570D6 /* CreatePictureViewController.swift */; };
 		5965B4631EDCC6500059E612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5965B4621EDCC6500059E612 /* AppDelegate.swift */; };
 		5965B4651EDCC6500059E612 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5965B4641EDCC6500059E612 /* TextViewController.swift */; };
 		5965B4681EDCC6500059E612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5965B4661EDCC6500059E612 /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 		079B5A3BE10812E490ECB50C /* Pods_Quick_Quips.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quick_Quips.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		25FCFD4AB0AF67BB3494851B /* Pods-Quick Quips.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick Quips.release.xcconfig"; path = "Pods/Target Support Files/Pods-Quick Quips/Pods-Quick Quips.release.xcconfig"; sourceTree = "<group>"; };
 		508E9EFC0315EAC5CD0A49BE /* Pods_Quick_QuipsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quick_QuipsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5907101E1EE0EB73005570D6 /* CreatePictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePictureViewController.swift; sourceTree = "<group>"; };
 		5965B45F1EDCC6500059E612 /* Quick Quips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quick Quips.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5965B4621EDCC6500059E612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5965B4641EDCC6500059E612 /* TextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				BA9C723589F0F354E6D5F704 /* PictureViewController.swift */,
 				BA9C70175C9E7928743CD020 /* CreateTextViewController.swift */,
 				59A6431C1EDD125D0075778E /* EditTextViewController.swift */,
+				5907101E1EE0EB73005570D6 /* CreatePictureViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5907101F1EE0EB73005570D6 /* CreatePictureViewController.swift in Sources */,
 				5965B4651EDCC6500059E612 /* TextViewController.swift in Sources */,
 				59A6431D1EDD125D0075778E /* EditTextViewController.swift in Sources */,
 				5965B4631EDCC6500059E612 /* AppDelegate.swift in Sources */,
