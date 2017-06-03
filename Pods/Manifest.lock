@@ -6,12 +6,14 @@ PODS:
   - Realm/Headers (2.6.2)
   - RealmSwift (2.6.2):
     - Realm (= 2.6.2)
+  - SwiftGifOrigin (1.6.1)
   - Toaster (2.0.3)
 
 DEPENDENCIES:
   - Nimble
   - Quick
   - RealmSwift
+  - SwiftGifOrigin
   - Toaster
 
 SPEC CHECKSUMS:
@@ -19,8 +21,9 @@ SPEC CHECKSUMS:
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   Realm: 29222766425b9f831228f81b63f0e38a97a4d700
   RealmSwift: d161a80f96cb91ae88391a7d5a9cf08024a7bc8e
+  SwiftGifOrigin: d6679d3ebe9df2e049a84bc52582635107b581f6
   Toaster: 77c0b03d78e680bbbab0071c9c7ee392b0034010
 
-PODFILE CHECKSUM: d0a5521d46390245d932840d4cad4d64abc3cfb6
+PODFILE CHECKSUM: 75e804ee435cdad1046695092e1d666691167445
 
 COCOAPODS: 1.2.1

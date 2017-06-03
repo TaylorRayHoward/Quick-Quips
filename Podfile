@@ -4,6 +4,7 @@ target 'Quick Quips' do
     use_frameworks!
     pod 'RealmSwift'
     pod 'Toaster'
+    pod 'SwiftGifOrigin'
 end
 target 'Quick QuipsTests' do
     use_frameworks!

@@ -7,14 +7,19 @@
 //
 
 import UIKit
+import Photos
+import SwiftGifOrigin
 
 class CreatePictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, UserEnteredDataDelegate {
 
     var urlForImage: URL? = nil
     var baseUrlForImage: String? = nil
+    var assetUrl: URL? = nil
+    
     @IBOutlet weak var pictureView: UIImageView!
     @IBOutlet weak var helpTextLabel: UILabel!
     @IBOutlet weak var actionsTable: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
@@ -38,20 +43,39 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let imageUrl          = info[UIImagePickerControllerReferenceURL] as? NSURL
+        let imageUrl          = info[UIImagePickerControllerReferenceURL] as? URL
         let imageName         = UUID().uuidString + (imageUrl?.lastPathComponent ?? "")
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         let photoURL          = NSURL(fileURLWithPath: documentDirectory)
         let localPath         = photoURL.appendingPathComponent(imageName)
         
+        let data = getDataForPicture(atUrl: imageUrl)
+        let gif = UIImage.gif(data: data!)
+        pictureView.image = gif
+        
         urlForImage = localPath
+        assetUrl = imageUrl
         baseUrlForImage = imageName
-        pictureView.image = image
         picker.dismiss(animated: true, completion: nil)
         helpTextLabel.isHidden = true
+    }
+    
+    func getDataForPicture(atUrl imageUrl: URL?) -> Data? {
+        
+        let ops = PHImageRequestOptions()
+        ops.isSynchronous = true
+        
+        var returnData: Data? = nil
+        
+        let asset = PHAsset.fetchAssets(withALAssetURLs: [imageUrl!], options: nil).firstObject!
+        PHImageManager.default().requestImageData(for: asset, options: ops, resultHandler: { (imageData, UTI, _, _) in
+            if let data = imageData {
+                returnData = data
+//                try? data.write(to: localPath!)
+            }
+        })
+        return returnData
+        
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -110,23 +134,25 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
     }
     @IBAction func saveButton(_ sender: Any) {
         if(urlForImage != nil) {
-        
-        if !FileManager.default.fileExists(atPath: urlForImage!.path) {
-            do {
-                try UIImageJPEGRepresentation(pictureView.image!, 1.0)?.write(to: urlForImage!)
-                print("file saved")
-            }catch {
-                print("error saving file")
+            
+            let data = getDataForPicture(atUrl: assetUrl)
+            if !FileManager.default.fileExists(atPath: urlForImage!.path){
+                do {
+                    try data!.write(to: urlForImage!)
+                    print("file saved")
+                }catch {
+                    print("error saving file")
+                }
             }
-        }
-        else {
-            print("file already exists")
-        }
+            else {
+                print("file already exists")
+            }
             let quip = Quip(name: getNameText()!, type: "image", text: baseUrlForImage!, category: getCategoryText()!)
             DBHelper.sharedInstance.writeObject(objects: [quip])
             navigationController?.popViewController(animated: true)
         }
     }
+    
     @IBAction func cancelButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
