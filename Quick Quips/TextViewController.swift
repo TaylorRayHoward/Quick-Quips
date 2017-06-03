@@ -23,6 +23,8 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
         quipsTableView.delegate = self
         quipsTableView.dataSource = self
         searchBar.delegate = self
+        quips = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("type = 'text'").sorted(byKeyPath: "frequency")
+        filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("type = 'text'").sorted(byKeyPath: "frequency")
         reload()
         addSearchBar()
         quipsTableView.tableFooterView = UIView()
@@ -74,9 +76,18 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = quipsTableView.cellForRow(at: indexPath) as! TextCell
+        let quip: Quip
+        if shouldShowSearchResults {
+            quip = filtered[indexPath.row] as! Quip
+        }
+        else {
+            quip = quips[indexPath.row] as! Quip
+        }
+        DBHelper.sharedInstance.incrementFrequency(for: quip)
         UIPasteboard.general.string = cell.quipLabel.text!
-        quipsTableView.deselectRow(at: indexPath, animated: true)
         Toast(text: "Copied!", duration: Delay.short).show()
+        reload()
+        quipsTableView.deselectRow(at: indexPath, animated: true)
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -94,9 +105,11 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let predicate = NSPredicate(format: "name CONTAINS[c] %@ OR category CONTAINS[c] %@ AND type = 'text'", searchBar.text!, searchBar.text!)
             filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter(predicate)
         }
-        else {
-            quips = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("type = 'text'")
-        }
+        quips = quips.sorted(byKeyPath: "frequency", ascending: false)
+        filtered = filtered.sorted(byKeyPath: "frequency", ascending: false)
+        let range = NSMakeRange(0, quipsTableView.numberOfSections)
+        let sections = NSIndexSet(indexesIn: range)
+        quipsTableView.reloadSections(sections as IndexSet, with: .automatic)
         
         self.quipsTableView.reloadData()
     }

@@ -133,8 +133,25 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         }
     }
     @IBAction func saveButton(_ sender: Any) {
-        if(urlForImage != nil) {
-            
+        let nameText = getNameText() ?? ""
+        let testQuip = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("name like[c] %@", nameText).first
+        
+        if urlForImage == nil {
+            let alert = UIAlertController(title: "Need picture", message: "Please select a photo", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else if nameText == "" {
+            let alert = UIAlertController(title: "Missing Fields", message: "You must enter a name to save", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else if testQuip != nil {
+            let alert = UIAlertController(title: "Non-unique Name", message: "The name must be unique", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else {
             let data = getDataForPicture(atUrl: assetUrl)
             if !FileManager.default.fileExists(atPath: urlForImage!.path){
                 do {

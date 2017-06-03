@@ -47,4 +47,10 @@ class DBHelper {
             realm.delete(object)
         }
     }
+    
+    func incrementFrequency(for quip: Quip){
+        try! realm.write {
+            quip.frequency += 1
+        }
+    }
 }

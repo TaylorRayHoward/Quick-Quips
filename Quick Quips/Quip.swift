@@ -13,9 +13,10 @@ import RealmSwift
 class Quip: Object {
     dynamic var name = ""
     dynamic var text = ""
-    dynamic var id = ""
+    dynamic var id = UUID().uuidString
     dynamic var category = ""
     dynamic var type = ""
+    dynamic var frequency = 0
     dynamic var createDate = Date()
 
     override class func primaryKey() -> String {
@@ -25,7 +26,6 @@ class Quip: Object {
     convenience init(name: String, type: String, text: String, category: String?) {
         self.init()
         self.name = name
-        self.id = UUID().uuidString
         self.type = type
         self.text = text
         self.category = category ?? ""

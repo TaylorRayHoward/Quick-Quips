@@ -81,10 +81,10 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     func reload() {
         if shouldShowSearchResults {
             let predicate = NSPredicate(format: "name CONTAINS[c] %@ OR category CONTAINS[c] %@ AND type = 'image'", searchBar.text!, searchBar.text!)
-            filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter(predicate)
+            filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter(predicate).sorted(byKeyPath: "frequency")
         }
         else {
-            quips = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("type = 'image'")
+            quips = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("type = 'image'").sorted(byKeyPath: "frequency")
         }
         self.pictureTable.reloadData()
     }
@@ -99,7 +99,13 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let quip = quips[indexPath.row] as! Quip
+        let quip: Quip
+        if shouldShowSearchResults {
+            quip = filtered[indexPath.row] as! Quip
+        }
+        else {
+            quip = quips[indexPath.row] as! Quip
+        }
         let data = getImageFrom(path: quip.text)
         let image = UIImage(data: data!)
         let path = URL(string: quip.text)
