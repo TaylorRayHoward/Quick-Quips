@@ -82,7 +82,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func reload() {
         if shouldShowSearchResults {
-            let predicate = NSPredicate(format: "name CONTAINS[c] %@ OR category CONTAINS[c] %@ AND type = 'image'", searchBar.text!, searchBar.text!)
+            let predicate = NSPredicate(format: "(name CONTAINS[c] %@ OR category CONTAINS[c] %@) AND type = 'image'", searchBar.text!, searchBar.text!)
             filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter(predicate)
         }
         quips = quips.sorted(byKeyPath: "frequency", ascending: false)
@@ -132,7 +132,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
         shouldShowSearchResults = true
-        self.pictureTable.reloadData()
+        reload()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

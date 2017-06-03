@@ -97,12 +97,12 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
         shouldShowSearchResults = true
-        self.quipsTableView.reloadData()
+        reload()
     }
     
     func reload() {
         if shouldShowSearchResults {
-            let predicate = NSPredicate(format: "name CONTAINS[c] %@ OR category CONTAINS[c] %@ AND type = 'text'", searchBar.text!, searchBar.text!)
+            let predicate = NSPredicate(format: "(name CONTAINS[c] %@ OR category CONTAINS[c] %@) AND type = 'text'", searchBar.text!, searchBar.text!)
             filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter(predicate)
         }
         quips = quips.sorted(byKeyPath: "frequency", ascending: false)
