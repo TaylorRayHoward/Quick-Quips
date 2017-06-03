@@ -339,14 +339,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ywY-iZ-IXC">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="8" y="0.0" width="367" height="43.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="ywY-iZ-IXC" firstAttribute="leading" secondItem="G54-ZM-np0" secondAttribute="leading" id="220-E2-9Gt"/>
+                                        <constraint firstItem="ywY-iZ-IXC" firstAttribute="leading" secondItem="G54-ZM-np0" secondAttribute="leading" constant="8" id="220-E2-9Gt"/>
                                         <constraint firstAttribute="bottom" secondItem="ywY-iZ-IXC" secondAttribute="bottom" id="7fU-f1-1cT"/>
                                         <constraint firstItem="ywY-iZ-IXC" firstAttribute="top" secondItem="G54-ZM-np0" secondAttribute="top" id="SDY-8B-4L0"/>
                                         <constraint firstAttribute="trailing" secondItem="ywY-iZ-IXC" secondAttribute="trailing" id="w9P-Y4-Sod"/>
@@ -381,7 +381,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gnJ-Uq-vXB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3708" y="-1101"/>
+            <point key="canvasLocation" x="3615" y="-759"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="dzb-Lp-QLs">

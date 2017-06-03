@@ -10,6 +10,7 @@ import UIKit
 
 class CreatePictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, UserEnteredDataDelegate {
 
+    var urlForImage: String? = nil
     @IBOutlet weak var pictureView: UIImageView!
     @IBOutlet weak var helpTextLabel: UILabel!
     @IBOutlet weak var actionsTable: UITableView!
@@ -28,7 +29,6 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
 
     func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
-        let tappedImage = tapGestureRecognizer.view as! UIImageView
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.sourceType = .photoLibrary
@@ -37,7 +37,28 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let imageUrl          = info[UIImagePickerControllerReferenceURL] as? NSURL
+        let imageName         = UUID().uuidString + (imageUrl?.lastPathComponent ?? "")
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let photoURL          = NSURL(fileURLWithPath: documentDirectory)
+        let localPath         = photoURL.appendingPathComponent(imageName)
+        
+        if !FileManager.default.fileExists(atPath: localPath!.path) {
+            do {
+                try UIImageJPEGRepresentation(image, 1.0)?.write(to: localPath!)
+                print("file saved")
+            }catch {
+                print("error saving file")
+            }
+        }
+        else {
+            print("file already exists")
+        }
+        
+        urlForImage = localPath?.path
         pictureView.image = image
         picker.dismiss(animated: true, completion: nil)
         helpTextLabel.isHidden = true
@@ -98,10 +119,26 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         }
     }
     @IBAction func saveButton(_ sender: Any) {
-        
+        if(urlForImage != nil) {
+            let quip = Quip(name: getNameText()!, type: urlForImage!, text: getCategoryText()!)
+            DBHelper.sharedInstance.writeObject(objects: [quip])
+            navigationController?.popViewController(animated: true)
+        }
     }
     @IBAction func cancelButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    func getNameText() -> String? {
+        let indexPath = IndexPath(row: 0, section: 0)
+        let cell = actionsTable.cellForRow(at: indexPath) as! TextCell
+        return cell.quipLabel.text
+    }
+    
+    func getCategoryText() -> String? {
+        let indexPath = IndexPath(row: 1, section: 0)
+        let cell = actionsTable.cellForRow(at: indexPath) as! TextCell
+        return cell.quipLabel.text
     }
 
     
