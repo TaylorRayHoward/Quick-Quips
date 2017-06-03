@@ -14,7 +14,7 @@ protocol UserEnteredDataDelegate {
 
 
 
-class EditTextViewController: UITableViewController {
+class EditTextViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet var editTable: UITableView!
     var delegate: UserEnteredDataDelegate? = nil
     var type: String = ""
@@ -37,6 +37,7 @@ class EditTextViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = editTable.dequeueReusableCell(withIdentifier: "EditCell", for: indexPath) as! EditCell
         cell.editText.becomeFirstResponder()
+        cell.editText.delegate = self
         if input != nil {
             cell.editText.text = input!
         }
@@ -65,5 +66,10 @@ class EditTextViewController: UITableViewController {
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
         dismiss(animated: true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        saveName(UIBarButtonItem())
+        return true
     }
 }

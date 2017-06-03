@@ -31,11 +31,22 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewWillAppear(_ animated: Bool) {
         reload()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        searchBar.endEditing(true)
+    }
 
     func addSearchBar() {
         searchBar.showsCancelButton = false
         searchBar.placeholder = "Search..."
         self.navigationItem.titleView = searchBar
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(cancelSearch))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func cancelSearch() {
+        searchBar.endEditing(true)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
