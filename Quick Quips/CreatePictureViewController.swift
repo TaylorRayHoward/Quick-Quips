@@ -10,7 +10,8 @@ import UIKit
 
 class CreatePictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, UserEnteredDataDelegate {
 
-    var urlForImage: String? = nil
+    var urlForImage: URL? = nil
+    var baseUrlForImage: String? = nil
     @IBOutlet weak var pictureView: UIImageView!
     @IBOutlet weak var helpTextLabel: UILabel!
     @IBOutlet weak var actionsTable: UITableView!
@@ -46,19 +47,8 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         let photoURL          = NSURL(fileURLWithPath: documentDirectory)
         let localPath         = photoURL.appendingPathComponent(imageName)
         
-        if !FileManager.default.fileExists(atPath: localPath!.path) {
-            do {
-                try UIImageJPEGRepresentation(image, 1.0)?.write(to: localPath!)
-                print("file saved")
-            }catch {
-                print("error saving file")
-            }
-        }
-        else {
-            print("file already exists")
-        }
-        
-        urlForImage = localPath?.path
+        urlForImage = localPath
+        baseUrlForImage = imageName
         pictureView.image = image
         picker.dismiss(animated: true, completion: nil)
         helpTextLabel.isHidden = true
@@ -120,7 +110,19 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
     }
     @IBAction func saveButton(_ sender: Any) {
         if(urlForImage != nil) {
-            let quip = Quip(name: getNameText()!, type: urlForImage!, text: getCategoryText()!)
+        
+        if !FileManager.default.fileExists(atPath: urlForImage!.path) {
+            do {
+                try UIImageJPEGRepresentation(pictureView.image!, 1.0)?.write(to: urlForImage!)
+                print("file saved")
+            }catch {
+                print("error saving file")
+            }
+        }
+        else {
+            print("file already exists")
+        }
+            let quip = Quip(name: getNameText()!, type: "image", text: baseUrlForImage!, category: getCategoryText()!)
             DBHelper.sharedInstance.writeObject(objects: [quip])
             navigationController?.popViewController(animated: true)
         }

@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Picture View Controller-->
         <scene sceneID="F8x-YT-F9C">
             <objects>
-                <viewController id="bx2-52-T4E" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="bx2-52-T4E" customClass="PictureViewController" customModule="Quick_Quips" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7ca-7W-bkB"/>
                         <viewControllerLayoutGuide type="bottom" id="Qno-wP-ObQ"/>
@@ -23,9 +23,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rIn-Pa-rhs">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="84" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rIn-Pa-rhs">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ImageCell" rowHeight="84" id="lDt-oj-qCy" customClass="ImageCell" customModule="Quick_Quips" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="84"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lDt-oj-qCy" id="dw3-vg-tgY">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zHM-Mh-xbH">
+                                                    <rect key="frame" x="8" y="8" width="75" height="67.5"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3G-tk-1A6">
+                                                    <rect key="frame" x="91" y="8" width="276" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puz-Rr-YXZ">
+                                                    <rect key="frame" x="91" y="54" width="276" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="H3G-tk-1A6" firstAttribute="top" secondItem="dw3-vg-tgY" secondAttribute="topMargin" id="6Xy-b0-Lo8"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="puz-Rr-YXZ" secondAttribute="bottom" constant="0.5" id="G5H-RU-kMN"/>
+                                                <constraint firstItem="zHM-Mh-xbH" firstAttribute="leading" secondItem="dw3-vg-tgY" secondAttribute="leading" constant="8" id="I2H-Cu-hOL"/>
+                                                <constraint firstAttribute="bottom" secondItem="zHM-Mh-xbH" secondAttribute="bottom" constant="8" id="O7v-XG-IU3"/>
+                                                <constraint firstItem="zHM-Mh-xbH" firstAttribute="width" secondItem="dw3-vg-tgY" secondAttribute="width" multiplier="0.2" id="Q5z-kL-XHo"/>
+                                                <constraint firstItem="puz-Rr-YXZ" firstAttribute="leading" secondItem="zHM-Mh-xbH" secondAttribute="trailing" constant="8" id="Zzz-MM-zyl"/>
+                                                <constraint firstItem="zHM-Mh-xbH" firstAttribute="top" secondItem="dw3-vg-tgY" secondAttribute="top" constant="8" id="k9h-mo-9fY"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="H3G-tk-1A6" secondAttribute="trailing" id="kkT-T4-dtg"/>
+                                                <constraint firstItem="H3G-tk-1A6" firstAttribute="leading" secondItem="zHM-Mh-xbH" secondAttribute="trailing" constant="8" id="xZO-tB-FA2"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="puz-Rr-YXZ" secondAttribute="trailing" id="zRX-gK-MKj"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="categoryLabel" destination="puz-Rr-YXZ" id="y3t-hC-tjO"/>
+                                            <outlet property="nameLabel" destination="H3G-tk-1A6" id="sKY-aj-hKn"/>
+                                            <outlet property="pictureView" destination="zHM-Mh-xbH" id="eZ7-8b-VUG"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -43,6 +88,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="pictureTable" destination="rIn-Pa-rhs" id="QrS-AC-blI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d74-Kp-pmZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

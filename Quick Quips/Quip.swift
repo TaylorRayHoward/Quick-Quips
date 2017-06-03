@@ -14,6 +14,7 @@ class Quip: Object {
     dynamic var name = ""
     dynamic var text = ""
     dynamic var id = ""
+    dynamic var category = ""
     dynamic var type = ""
     dynamic var createDate = Date()
 
@@ -21,11 +22,12 @@ class Quip: Object {
         return "id"
     }
 
-    convenience init(name: String, type: String, text: String) {
+    convenience init(name: String, type: String, text: String, category: String?) {
         self.init()
         self.name = name
         self.id = UUID().uuidString
         self.type = type
         self.text = text
+        self.category = category ?? ""
     }
 }

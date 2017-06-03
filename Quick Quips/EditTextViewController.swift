@@ -44,10 +44,8 @@ class EditTextViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        return
-    }
-    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         editTable.deselectRow(at: indexPath, animated: false)
+        return
     }
     
     @IBAction func saveName(_ sender: UIBarButtonItem) {

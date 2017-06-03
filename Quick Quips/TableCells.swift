@@ -17,3 +17,9 @@ class TextCell: UITableViewCell {
 class EditCell: UITableViewCell {
     @IBOutlet weak var editText: UITextField!
 }
+
+class ImageCell: UITableViewCell {
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet var pictureView: UIImageView!
+}

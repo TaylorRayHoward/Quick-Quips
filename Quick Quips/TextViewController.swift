@@ -25,6 +25,7 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
         searchBar.delegate = self
         reload()
         addSearchBar()
+        quipsTableView.tableFooterView = UIView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +57,7 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         cell.nameLabel.text = quip.name
         cell.quipLabel.text = quip.text
-        cell.categoryLabel.text = quip.type
+        cell.categoryLabel.text = quip.category
         return cell
     }
     
@@ -79,11 +80,11 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func reload() {
         if shouldShowSearchResults {
-            let predicate = NSPredicate(format: "name CONTAINS[c] %@ OR type CONTAINS[c] %@", searchBar.text!, searchBar.text!)
+            let predicate = NSPredicate(format: "name CONTAINS[c] %@ OR category CONTAINS[c] %@ AND type = 'text'", searchBar.text!, searchBar.text!)
             filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter(predicate)
         }
         else {
-            quips = DBHelper.sharedInstance.getAll(ofType: Quip.self)
+            quips = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("type = 'text'")
         }
         
         self.quipsTableView.reloadData()
@@ -103,7 +104,7 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let cell = tableView.cellForRow(at: indexPath) as! TextCell
-            let deleteQuip = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("name = %@", cell.nameLabel.text!).first!
+            let deleteQuip = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("name = %@ AND type = 'text'", cell.nameLabel.text!).first!
             DBHelper.sharedInstance.deleteObject([deleteQuip])
             reload()
         }

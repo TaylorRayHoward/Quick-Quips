@@ -59,7 +59,7 @@ class CreateTextViewController: UITableViewController, UserEnteredDataDelegate {
     }
 
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
-        let quip = Quip(name: getNameText(), type: getCategoryText(), text: getQuipText())
+        let quip = Quip(name: getNameText(), type: "text", text: getQuipText(), category: getCategoryText())
         DBHelper.sharedInstance.writeObject(objects: [quip])
         navigationController?.popViewController(animated: true)
     }
