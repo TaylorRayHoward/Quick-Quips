@@ -24,6 +24,8 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         pictureTable.dataSource = self
         pictureTable.delegate = self
         searchBar.delegate = self
+        quips = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("type = 'image'").sorted(byKeyPath: "frequency")
+        filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("type = 'image'").sorted(byKeyPath: "frequency")
         reload()
         addSearchBar()
         print(Realm.Configuration.defaultConfiguration.fileURL!)
@@ -81,13 +83,15 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     func reload() {
         if shouldShowSearchResults {
             let predicate = NSPredicate(format: "name CONTAINS[c] %@ OR category CONTAINS[c] %@ AND type = 'image'", searchBar.text!, searchBar.text!)
-            filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter(predicate).sorted(byKeyPath: "frequency")
+            filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter(predicate)
         }
-        else {
-            quips = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("type = 'image'").sorted(byKeyPath: "frequency")
-        }
-        self.pictureTable.reloadData()
+        quips = quips.sorted(byKeyPath: "frequency", ascending: false)
+        filtered = filtered.sorted(byKeyPath: "frequency", ascending: false)
+        let range = NSMakeRange(0, pictureTable.numberOfSections)
+        let sections = NSIndexSet(indexesIn: range)
+        pictureTable.reloadSections(sections as IndexSet, with: .automatic)
     }
+    
     
     func getImageFrom(path: String) -> Data? {
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
@@ -106,6 +110,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         else {
             quip = quips[indexPath.row] as! Quip
         }
+        DBHelper.sharedInstance.incrementFrequency(for: quip)
         let data = getImageFrom(path: quip.text)
         let image = UIImage(data: data!)
         let path = URL(string: quip.text)
@@ -117,6 +122,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         pictureTable.deselectRow(at: indexPath, animated: true)
         Toast(text: "Copied!", duration: Delay.short).show()
+        reload()
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

@@ -110,8 +110,6 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let range = NSMakeRange(0, quipsTableView.numberOfSections)
         let sections = NSIndexSet(indexesIn: range)
         quipsTableView.reloadSections(sections as IndexSet, with: .automatic)
-        
-        self.quipsTableView.reloadData()
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
