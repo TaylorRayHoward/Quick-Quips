@@ -9,12 +9,14 @@
 import UIKit
 import Photos
 import SwiftGifOrigin
+import MobileCoreServices
 
 class CreatePictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, UserEnteredDataDelegate {
 
     var urlForImage: URL? = nil
     var baseUrlForImage: String? = nil
     var assetUrl: URL? = nil
+    var action: saveType? = nil
     
     @IBOutlet weak var pictureView: UIImageView!
     @IBOutlet weak var helpTextLabel: UILabel!
@@ -42,13 +44,31 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
             imagePickerController.sourceType = .photoLibrary
             self.present(imagePickerController, animated: true, completion: nil)
         }
+        
+        let clipboardAction = UIAlertAction(title: "Clipboard", style: .default) { action in
+            let gif = UIPasteboard.general.data(forPasteboardType: kUTTypeGIF as String)
+            if gif == nil {
+                let image = UIPasteboard.general.image
+                if let i = image {
+                    self.helpTextLabel.isHidden = true
+                    self.pictureView.image = i
+                }
+                else {
+                    return
+                }
+            }
+            else {
+                self.helpTextLabel.isHidden = true
+                self.pictureView.image = UIImage.gif(data: gif!)
+            }
+        }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
         actionSheet.addAction(imageAction)
         actionSheet.addAction(cancelAction)
+        actionSheet.addAction(clipboardAction)
         
         present(actionSheet, animated: true, completion: nil)
-        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -67,6 +87,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         baseUrlForImage = imageName
         picker.dismiss(animated: true, completion: nil)
         helpTextLabel.isHidden = true
+        action = saveType.photos
     }
     
     func getDataForPicture(atUrl imageUrl: URL?) -> Data? {
@@ -80,7 +101,6 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         PHImageManager.default().requestImageData(for: asset, options: ops, resultHandler: { (imageData, UTI, _, _) in
             if let data = imageData {
                 returnData = data
-//                try? data.write(to: localPath!)
             }
         })
         return returnData
@@ -161,22 +181,31 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
             self.present(alert, animated: true, completion: nil)
         }
         else {
-            let data = getDataForPicture(atUrl: assetUrl)
-            if !FileManager.default.fileExists(atPath: urlForImage!.path){
-                do {
-                    try data!.write(to: urlForImage!)
-                    print("file saved")
-                }catch {
-                    print("error saving file")
-                }
+            switch(action!) {
+            case .photos:
+                saveWithPhoto()
+            default:
+                return
             }
-            else {
-                print("file already exists")
-            }
-            let quip = Quip(name: getNameText()!, type: "image", text: baseUrlForImage!, category: getCategoryText()!)
-            DBHelper.sharedInstance.writeObject(objects: [quip])
+            
             navigationController?.popViewController(animated: true)
         }
+    }
+    func saveWithPhoto() {
+        let data = getDataForPicture(atUrl: assetUrl)
+        if !FileManager.default.fileExists(atPath: urlForImage!.path){
+            do {
+                try data!.write(to: urlForImage!)
+                print("file saved")
+            }catch {
+                print("error saving file")
+            }
+        }
+        else {
+            print("file already exists")
+        }
+        let quip = Quip(name: getNameText()!, type: "image", text: baseUrlForImage!, category: getCategoryText()!)
+        DBHelper.sharedInstance.writeObject(objects: [quip])
     }
     
     @IBAction func cancelButton(_ sender: Any) {
@@ -196,4 +225,10 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
     }
 
     
+}
+
+enum saveType {
+    case photos
+    case clipboard
+    case url
 }
