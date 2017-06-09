@@ -87,9 +87,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         quips = quips.sorted(byKeyPath: "frequency", ascending: false)
         filtered = filtered.sorted(byKeyPath: "frequency", ascending: false)
-        let range = NSMakeRange(0, pictureTable.numberOfSections)
-        let sections = NSIndexSet(indexesIn: range)
-        pictureTable.reloadSections(sections as IndexSet, with: .automatic)
+        pictureTable.reloadData()
     }
     
     
@@ -103,6 +101,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        pictureTable.deselectRow(at: indexPath, animated: true)
         let quip: Quip
         if shouldShowSearchResults {
             quip = filtered[indexPath.row] as! Quip
@@ -110,17 +109,19 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         else {
             quip = quips[indexPath.row] as! Quip
         }
+        let quipText = quip.text
+        DispatchQueue.global(qos: .background).async {
+            let data = self.getImageFrom(path: quipText)
+            let image = UIImage(data: data!)
+            let path = URL(string: quipText)
+            if path?.pathExtension.uppercased() == "GIF" {
+                UIPasteboard.general.setData(data!, forPasteboardType: kUTTypeGIF as String)
+            }
+            else {
+                UIPasteboard.general.image = image
+            }
+        }
         DBHelper.sharedInstance.incrementFrequency(for: quip)
-        let data = getImageFrom(path: quip.text)
-        let image = UIImage(data: data!)
-        let path = URL(string: quip.text)
-        if path?.pathExtension.uppercased() == "GIF" {
-            UIPasteboard.general.setData(data!, forPasteboardType: kUTTypeGIF as String)
-        }
-        else {
-            UIPasteboard.general.image = image
-        }
-        pictureTable.deselectRow(at: indexPath, animated: true)
         Toast(text: "Copied!", duration: Delay.short).show()
         reload()
     }
