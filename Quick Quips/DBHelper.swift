@@ -16,7 +16,7 @@ class DBHelper {
     static let sharedInstance = DBHelper(inEnvironment: .Application)
     static let testInstance = DBHelper(inEnvironment: .Test)
 
-    init(inEnvironment env: Environment) {
+    private init(inEnvironment env: Environment) {
         if (env == .Application) {
             realm = try! Realm()
         } else if (env == .Test) {

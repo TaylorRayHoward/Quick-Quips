@@ -11,7 +11,7 @@ import MobileCoreServices
 
 
 class PictureViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
-
+    
     let searchBar = UISearchBar()
     var quips: Results<Object>!
     var filtered: Results<Object>!
@@ -53,7 +53,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     func cancelSearch() {
         searchBar.endEditing(true)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -65,7 +65,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
             quip = filtered[indexPath.row] as! Quip
         }
         else {
-           quip = quips[indexPath.row] as! Quip
+            quip = quips[indexPath.row] as! Quip
         }
         cell.nameLabel.text = quip.name
         cell.categoryLabel.text = quip.category
@@ -83,18 +83,11 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
             let predicate = NSPredicate(format: "(name CONTAINS[c] %@ OR category CONTAINS[c] %@) AND type = 'image'", searchBar.text!, searchBar.text!)
             filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter(predicate)
         }
-        populatePictures()
+        sortQuips()
+        pictures = PictureHolder.sharedInstance.populatePictures()
         pictureTable.reloadData()
     }
     
-    func getImageFrom(path: String) -> Data? {
-        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
-        let photoURL = NSURL(fileURLWithPath: documentDirectory)
-        let localPath = photoURL.appendingPathComponent(path)
-        let data = FileManager.default.contents(atPath: localPath!.path)
-        
-        return data
-    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         pictureTable.deselectRow(at: indexPath, animated: true)
@@ -107,7 +100,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         let quipText = quip.text
         DispatchQueue.global(qos: .background).async {
-            let data = self.getImageFrom(path: quipText)
+            let data = PictureHolder.sharedInstance.getImageFrom(path: quipText)
             let image = UIImage(data: data!)
             let path = URL(string: quipText)
             if path?.pathExtension.uppercased() == "GIF" {
@@ -153,22 +146,9 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    func sortHabits() {
+    func sortQuips() {
         quips = quips.sorted(byKeyPath: "frequency", ascending: false)
         filtered = filtered.sorted(byKeyPath: "frequency", ascending: false)
     }
-    
-    func populatePictures() {
-        sortHabits()
-        pictures.removeAll()
-        for q in quips {
-            if let quip = q as? Quip {
-                let data = getImageFrom(path: quip.text)
-                let image = UIImage(data: data!)
-                pictures.append(image!)
-            }
-        }
-    }
-    
     
 }
