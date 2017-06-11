@@ -16,6 +16,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     var quips: Results<Object>!
     var filtered: Results<Object>!
     var shouldShowSearchResults = false
+    var pictures = [UIImage]()
     
     @IBOutlet var pictureTable: UITableView!
     
@@ -66,12 +67,9 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         else {
            quip = quips[indexPath.row] as! Quip
         }
-        print(quip.text)
         cell.nameLabel.text = quip.name
         cell.categoryLabel.text = quip.category
-        let data = getImageFrom(path: quip.text)
-        let image = UIImage(data: data!)
-        cell.pictureView.image = image!
+        cell.pictureView.image = pictures[indexPath.row]
         return cell
     }
     
@@ -85,11 +83,9 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
             let predicate = NSPredicate(format: "(name CONTAINS[c] %@ OR category CONTAINS[c] %@) AND type = 'image'", searchBar.text!, searchBar.text!)
             filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter(predicate)
         }
-        quips = quips.sorted(byKeyPath: "frequency", ascending: false)
-        filtered = filtered.sorted(byKeyPath: "frequency", ascending: false)
+        populatePictures()
         pictureTable.reloadData()
     }
-    
     
     func getImageFrom(path: String) -> Data? {
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
@@ -156,5 +152,23 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
             reload()
         }
     }
+    
+    func sortHabits() {
+        quips = quips.sorted(byKeyPath: "frequency", ascending: false)
+        filtered = filtered.sorted(byKeyPath: "frequency", ascending: false)
+    }
+    
+    func populatePictures() {
+        sortHabits()
+        pictures.removeAll()
+        for q in quips {
+            if let quip = q as? Quip {
+                let data = getImageFrom(path: quip.text)
+                let image = UIImage(data: data!)
+                pictures.append(image!)
+            }
+        }
+    }
+    
     
 }
