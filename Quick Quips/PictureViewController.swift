@@ -26,8 +26,6 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         pictureTable.dataSource = self
         pictureTable.delegate = self
         searchBar.delegate = self
-        quips = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("type = 'image'").sorted(byKeyPath: "frequency")
-        filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("type = 'image'").sorted(byKeyPath: "frequency")
         populatePictures()
         reload()
         addSearchBar()
@@ -36,6 +34,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        sortPictures()
         reload()
     }
     
@@ -91,7 +90,13 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         pictureTable.reloadData()
     }
     
+    func sortPictures() {
+        quips = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("type = 'image'").sorted(byKeyPath: "frequency")
+        filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("type = 'image'").sorted(byKeyPath: "frequency")
+    }
+    
     func populatePictures() {
+        sortPictures()
         for quip in quips {
             if let q = quip as? Quip {
                 let data = self.getImageFrom(path: q.text)
