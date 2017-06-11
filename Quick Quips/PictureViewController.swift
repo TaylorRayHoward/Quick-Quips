@@ -14,10 +14,8 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     let searchBar = UISearchBar()
     var quips: Results<Object>!
-    var pictures = [UIImage]()
     var filtered: Results<Object>!
     var shouldShowSearchResults = false
-    
     
     @IBOutlet var pictureTable: UITableView!
     
@@ -28,7 +26,6 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         searchBar.delegate = self
         quips = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("type = 'image'").sorted(byKeyPath: "frequency")
         filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("type = 'image'").sorted(byKeyPath: "frequency")
-        populatePictures()
         reload()
         addSearchBar()
         print(Realm.Configuration.defaultConfiguration.fileURL!)
@@ -69,10 +66,12 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         else {
            quip = quips[indexPath.row] as! Quip
         }
+        print(quip.text)
         cell.nameLabel.text = quip.name
         cell.categoryLabel.text = quip.category
-        let image = pictures[indexPath.row]
-        cell.pictureView.image = image
+        let data = getImageFrom(path: quip.text)
+        let image = UIImage(data: data!)
+        cell.pictureView.image = image!
         return cell
     }
     
@@ -89,19 +88,6 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         quips = quips.sorted(byKeyPath: "frequency", ascending: false)
         filtered = filtered.sorted(byKeyPath: "frequency", ascending: false)
         pictureTable.reloadData()
-    }
-    
-    func populatePictures() {
-        for quip in quips {
-            if let q = quip as? Quip {
-                let data = self.getImageFrom(path: q.text)
-                let image = UIImage(data: data!)
-                pictures.append(image!)
-            }
-            else {
-                print("wat")
-            }
-        }
     }
     
     
@@ -163,12 +149,11 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let deleteQuip = quips[indexPath.row] as! Quip
+            let cell = pictureTable.cellForRow(at: indexPath) as! ImageCell
+            let deleteQuip = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("name = %@ AND type = 'image'", cell.nameLabel.text!).first! as! Quip
             try? FileManager.default.removeItem(at: URL(string: deleteQuip.text)!)
             DBHelper.sharedInstance.deleteObject([deleteQuip])
-            pictures.remove(at: indexPath.row)
             reload()
-            
         }
     }
     
