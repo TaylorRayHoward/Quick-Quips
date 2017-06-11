@@ -188,10 +188,6 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
                 return
             }
             
-            if let vc = navigationController?.viewControllers[0] as? PictureViewController {
-                vc.populatePictures()
-            }
-            
             navigationController?.popViewController(animated: true)
         }
     }
