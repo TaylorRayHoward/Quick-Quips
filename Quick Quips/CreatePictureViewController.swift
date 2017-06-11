@@ -17,6 +17,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
     var baseUrlForImage: String? = nil
     var assetUrl: URL? = nil
     var action: saveType? = nil
+    var clipboardData: Data? = nil
     
     @IBOutlet weak var pictureView: UIImageView!
     @IBOutlet weak var helpTextLabel: UILabel!
@@ -50,6 +51,8 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
             if gif == nil {
                 let image = UIPasteboard.general.image
                 if let i = image {
+                    self.urlForImage = URL(string: "asset.png")
+                    self.clipboardData = UIImagePNGRepresentation(image!)
                     self.helpTextLabel.isHidden = true
                     self.pictureView.image = i
                 }
@@ -58,9 +61,12 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
                 }
             }
             else {
+                self.clipboardData = gif!
+                self.urlForImage = URL(string: "asset.gif")
                 self.helpTextLabel.isHidden = true
                 self.pictureView.image = UIImage.gif(data: gif!)
             }
+            self.action = .clipboard
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
@@ -161,11 +167,12 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
             return
         }
     }
+    
     @IBAction func saveButton(_ sender: Any) {
         let nameText = getNameText() ?? ""
         let testQuip = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("name like[c] %@", nameText).first
         
-        if urlForImage == nil {
+        if !hasCompletedPhoto() {
             let alert = UIAlertController(title: "Need picture", message: "Please select a photo", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
@@ -183,7 +190,9 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         else {
             switch(action!) {
             case .photos:
-                saveWithPhoto()
+                saveFromPhotos()
+            case .clipboard:
+                saveFromClipboard()
             default:
                 return
             }
@@ -191,11 +200,36 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
             navigationController?.popViewController(animated: true)
         }
     }
-    func saveWithPhoto() {
+    
+    func saveFromPhotos() {
         let data = getDataForPicture(atUrl: assetUrl)
         if !FileManager.default.fileExists(atPath: urlForImage!.path){
             do {
                 try data!.write(to: urlForImage!)
+                print("file saved")
+            }catch {
+                print("error saving file")
+            }
+        }
+        else {
+            print("file already exists")
+        }
+        let quip = Quip(name: getNameText()!, type: "image", text: baseUrlForImage!, category: getCategoryText()!)
+        DBHelper.sharedInstance.writeObject(objects: [quip])
+    }
+    
+    func saveFromClipboard() {
+        let imageName         = UUID().uuidString + (urlForImage?.absoluteString ?? "")
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let photoURL          = NSURL(fileURLWithPath: documentDirectory)
+        let localPath         = photoURL.appendingPathComponent(imageName)
+        
+        baseUrlForImage = imageName
+        urlForImage = localPath
+        
+        if !FileManager.default.fileExists(atPath: urlForImage!.path){
+            do {
+                try clipboardData!.write(to: urlForImage!)
                 print("file saved")
             }catch {
                 print("error saving file")
@@ -223,7 +257,10 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         let cell = actionsTable.cellForRow(at: indexPath) as! TextCell
         return cell.quipLabel.text
     }
-
+    
+    func hasCompletedPhoto() -> Bool {
+        return assetUrl != nil || clipboardData != nil
+    }
     
 }
 
