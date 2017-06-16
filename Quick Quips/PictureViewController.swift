@@ -81,10 +81,10 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     func reload() {
         if shouldShowSearchResults {
             let predicate = NSPredicate(format: "(name CONTAINS[c] %@ OR category CONTAINS[c] %@) AND type = 'image'", searchBar.text!, searchBar.text!)
-            filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter(predicate)
+            filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).sorted(byKeyPath: "frequency", ascending: true).filter(predicate)
         }
+        pictures = PictureHolder.sharedInstance.populatePictures(forSearch: shouldShowSearchResults, input: searchBar.text)
         sortQuips()
-        pictures = PictureHolder.sharedInstance.populatePictures()
         pictureTable.reloadData()
     }
     
