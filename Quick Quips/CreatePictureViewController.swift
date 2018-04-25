@@ -13,11 +13,11 @@ import MobileCoreServices
 
 class CreatePictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, UserEnteredDataDelegate {
 
-    var urlForImage: URL? = nil
-    var baseUrlForImage: String? = nil
-    var assetUrl: URL? = nil
+    @objc var urlForImage: URL? = nil
+    @objc var baseUrlForImage: String? = nil
+    @objc var assetUrl: URL? = nil
     var action: saveType? = nil
-    var clipboardData: Data? = nil
+    @objc var clipboardData: Data? = nil
     
     @IBOutlet weak var pictureView: UIImageView!
     @IBOutlet weak var helpTextLabel: UILabel!
@@ -36,7 +36,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         super.didReceiveMemoryWarning()
     }
 
-    func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let imageAction = UIAlertAction(title: "Photos", style: .default) { action in
@@ -96,7 +96,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         action = saveType.photos
     }
     
-    func getDataForPicture(atUrl imageUrl: URL?) -> Data? {
+    @objc func getDataForPicture(atUrl imageUrl: URL?) -> Data? {
         
         let ops = PHImageRequestOptions()
         ops.isSynchronous = true
@@ -153,7 +153,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         }
     }
     
-    func userEnteredName(data: String, type: String) {
+    @objc func userEnteredName(data: String, type: String) {
         switch(type){
         case "name":
             let indexPath = IndexPath(row: 0, section: 0)
@@ -201,7 +201,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         }
     }
     
-    func saveFromPhotos() {
+    @objc func saveFromPhotos() {
         let data = getDataForPicture(atUrl: assetUrl)
         if !FileManager.default.fileExists(atPath: urlForImage!.path){
             do {
@@ -218,7 +218,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         DBHelper.sharedInstance.writeObject(objects: [quip])
     }
     
-    func saveFromClipboard() {
+    @objc func saveFromClipboard() {
         let imageName         = UUID().uuidString + (urlForImage?.absoluteString ?? "")
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         let photoURL          = NSURL(fileURLWithPath: documentDirectory)
@@ -246,19 +246,19 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         navigationController?.popViewController(animated: true)
     }
     
-    func getNameText() -> String? {
+    @objc func getNameText() -> String? {
         let indexPath = IndexPath(row: 0, section: 0)
         let cell = actionsTable.cellForRow(at: indexPath) as! TextCell
         return cell.quipLabel.text
     }
     
-    func getCategoryText() -> String? {
+    @objc func getCategoryText() -> String? {
         let indexPath = IndexPath(row: 1, section: 0)
         let cell = actionsTable.cellForRow(at: indexPath) as! TextCell
         return cell.quipLabel.text
     }
     
-    func hasCompletedPhoto() -> Bool {
+    @objc func hasCompletedPhoto() -> Bool {
         return assetUrl != nil || clipboardData != nil
     }
     
