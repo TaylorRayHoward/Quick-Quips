@@ -17,7 +17,7 @@ class PictureHolder {
     }
     func populatePictures() -> [UIImage] {
         var pics = [UIImage]()
-        let quips = DBHelper.sharedInstance.getQuips().sorted(byKeyPath: "frequency", ascending: false)
+        let quips = DBHelper.sharedInstance.getQuips().filter("type = 'image'").sorted(byKeyPath: "frequency", ascending: false)
         for quip in quips {
             let data = getImageFrom(path: quip.text)
             let image = UIImage(data: data!)
