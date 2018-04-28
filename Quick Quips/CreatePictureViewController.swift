@@ -96,7 +96,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         action = saveType.photos
     }
     
-    @objc func getDataForPicture(atUrl imageUrl: URL?) -> Data? {
+    func getDataForPicture(atUrl imageUrl: URL?) -> Data? {
         
         let ops = PHImageRequestOptions()
         ops.isSynchronous = true
