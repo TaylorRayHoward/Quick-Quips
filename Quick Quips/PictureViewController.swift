@@ -12,11 +12,11 @@ import MobileCoreServices
 
 class PictureViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
     
-    @objc let searchBar = UISearchBar()
+    let searchBar = UISearchBar()
     var quips: Results<Object>!
     var filtered: Results<Object>!
-    @objc var shouldShowSearchResults = false
-    @objc var pictures = [UIImage]()
+    var shouldShowSearchResults = false
+    var pictures = [UIImage]()
     
     @IBOutlet var pictureTable: UITableView!
     
@@ -41,7 +41,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         searchBar.endEditing(true)
     }
     
-    @objc func addSearchBar() {
+    func addSearchBar() {
         searchBar.showsCancelButton = false
         searchBar.placeholder = "Search..."
         self.navigationItem.titleView = searchBar
@@ -78,7 +78,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         else { return quips.count }
     }
     
-    @objc func reload() {
+    func reload() {
         if shouldShowSearchResults {
             let predicate = NSPredicate(format: "(name CONTAINS[c] %@ OR category CONTAINS[c] %@) AND type = 'image'", searchBar.text!, searchBar.text!)
             filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).sorted(byKeyPath: "frequency", ascending: true).filter(predicate)
@@ -146,7 +146,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    @objc func sortQuips() {
+    func sortQuips() {
         quips = quips.sorted(byKeyPath: "frequency", ascending: false)
         filtered = filtered.sorted(byKeyPath: "frequency", ascending: false)
     }

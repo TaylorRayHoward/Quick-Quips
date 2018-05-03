@@ -12,13 +12,11 @@ protocol UserEnteredDataDelegate {
     func userEnteredName(data: String, type: String)
 }
 
-
-
 class EditTextViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet var editTable: UITableView!
     var delegate: UserEnteredDataDelegate? = nil
-    @objc var type: String = ""
-    @objc var input: String? = nil
+    var type: String = ""
+    var input: String? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()

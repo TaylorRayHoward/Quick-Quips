@@ -15,8 +15,8 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var quips: Results<Object>!
     var filtered: Results<Object>!
-    @objc let searchBar = UISearchBar()
-    @objc var shouldShowSearchResults = false
+    let searchBar = UISearchBar()
+    var shouldShowSearchResults = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,7 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
         searchBar.endEditing(true)
     }
 
-    @objc func addSearchBar() {
+    func addSearchBar() {
         searchBar.showsCancelButton = false
         searchBar.placeholder = "Search..."
         self.navigationItem.titleView = searchBar
@@ -100,7 +100,7 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
         reload()
     }
     
-    @objc func reload() {
+    func reload() {
         if shouldShowSearchResults {
             let predicate = NSPredicate(format: "(name CONTAINS[c] %@ OR category CONTAINS[c] %@) AND type = 'text'", searchBar.text!, searchBar.text!)
             filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter(predicate)

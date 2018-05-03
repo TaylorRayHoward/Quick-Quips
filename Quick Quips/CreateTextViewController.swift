@@ -82,7 +82,7 @@ class CreateTextViewController: UITableViewController, UserEnteredDataDelegate {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func userEnteredName(data: String, type: String) {
+    func userEnteredName(data: String, type: String) {
         switch(type){
         case "name":
             let indexPath = IndexPath(row: 0, section: 0)
@@ -101,19 +101,19 @@ class CreateTextViewController: UITableViewController, UserEnteredDataDelegate {
         }
     }
     
-    @objc func getNameText() -> String? {
+    func getNameText() -> String? {
         let indexPath = IndexPath(row: 0, section: 0)
         let cell = actionsTableView.cellForRow(at: indexPath) as! TextCell
         return cell.quipLabel.text
     }
     
-    @objc func getQuipText() -> String? {
+    func getQuipText() -> String? {
         let indexPath = IndexPath(row: 1, section: 0)
         let cell = actionsTableView.cellForRow(at: indexPath) as! TextCell
         return cell.quipLabel.text
     }
     
-    @objc func getCategoryText() -> String? {
+    func getCategoryText() -> String? {
         let indexPath = IndexPath(row: 2, section: 0)
         let cell = actionsTableView.cellForRow(at: indexPath) as! TextCell
         return cell.quipLabel.text

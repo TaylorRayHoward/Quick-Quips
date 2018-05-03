@@ -12,12 +12,12 @@ import SwiftGifOrigin
 import MobileCoreServices
 
 class CreatePictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, UserEnteredDataDelegate {
-
-    @objc var urlForImage: URL? = nil
-    @objc var baseUrlForImage: String? = nil
-    @objc var assetUrl: URL? = nil
+    
+    var urlForImage: URL? = nil
+    var baseUrlForImage: String? = nil
+    var assetUrl: URL? = nil
     var action: saveType? = nil
-    @objc var clipboardData: Data? = nil
+    var clipboardData: Data? = nil
     
     @IBOutlet weak var pictureView: UIImageView!
     @IBOutlet weak var helpTextLabel: UILabel!
@@ -31,19 +31,59 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         actionsTable.dataSource = self
         actionsTable.delegate = self
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
+    func createDeniedAlert() -> UIAlertController {
+        let alert = UIAlertController(title: "You have denied picture permission", message: "You must allow this from settings", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Settings", style: UIAlertActionStyle.default, handler: {
+            _ in
+            guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+                return
+            }
+            
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                    print("Settings opened: \(success)") // Prints true
+                })
+            }
+        }))
+        return alert;
+    }
+    
+    func createUIImagePicker() -> UIImagePickerController {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .photoLibrary
+        return imagePickerController;
+    }
+    
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let imageAction = UIAlertAction(title: "Photos", style: .default) { action in
-            let imagePickerController = UIImagePickerController()
-            imagePickerController.delegate = self
-            imagePickerController.sourceType = .photoLibrary
-            self.present(imagePickerController, animated: true, completion: nil)
+            let permission = PHPhotoLibrary.authorizationStatus();
+            switch(permission) {
+            case .denied, .restricted:
+                let alert = self.createDeniedAlert()
+                self.present(alert, animated: true, completion: nil)
+            case .authorized:
+                let controller = self.createUIImagePicker()
+                self.present(controller, animated: true, completion: nil)
+            case .notDetermined:
+                PHPhotoLibrary.requestAuthorization({status in
+                    if status == .authorized {
+                        let controller = self.createUIImagePicker()
+                        self.present(controller, animated: true, completion: nil)
+                    } else {
+                        let alert = self.createDeniedAlert()
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                })
+            }
         }
         
         let clipboardAction = UIAlertAction(title: "Clipboard", style: .default) { action in
@@ -102,7 +142,6 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         ops.isSynchronous = true
         
         var returnData: Data? = nil
-        
         let asset = PHAsset.fetchAssets(withALAssetURLs: [imageUrl!], options: nil).firstObject!
         PHImageManager.default().requestImageData(for: asset, options: ops, resultHandler: { (imageData, UTI, _, _) in
             if let data = imageData {
@@ -153,7 +192,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         }
     }
     
-    @objc func userEnteredName(data: String, type: String) {
+    func userEnteredName(data: String, type: String) {
         switch(type){
         case "name":
             let indexPath = IndexPath(row: 0, section: 0)
@@ -201,7 +240,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         }
     }
     
-    @objc func saveFromPhotos() {
+    func saveFromPhotos() {
         let data = getDataForPicture(atUrl: assetUrl)
         if !FileManager.default.fileExists(atPath: urlForImage!.path){
             do {
@@ -218,7 +257,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         DBHelper.sharedInstance.writeObject(objects: [quip])
     }
     
-    @objc func saveFromClipboard() {
+    func saveFromClipboard() {
         let imageName         = UUID().uuidString + (urlForImage?.absoluteString ?? "")
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         let photoURL          = NSURL(fileURLWithPath: documentDirectory)
@@ -246,19 +285,19 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func getNameText() -> String? {
+    func getNameText() -> String? {
         let indexPath = IndexPath(row: 0, section: 0)
         let cell = actionsTable.cellForRow(at: indexPath) as! TextCell
         return cell.quipLabel.text
     }
     
-    @objc func getCategoryText() -> String? {
+    func getCategoryText() -> String? {
         let indexPath = IndexPath(row: 1, section: 0)
         let cell = actionsTable.cellForRow(at: indexPath) as! TextCell
         return cell.quipLabel.text
     }
     
-    @objc func hasCompletedPhoto() -> Bool {
+    func hasCompletedPhoto() -> Bool {
         return assetUrl != nil || clipboardData != nil
     }
     
