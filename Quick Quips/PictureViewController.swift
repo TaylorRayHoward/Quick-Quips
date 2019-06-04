@@ -16,7 +16,8 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     var quips: Results<Object>!
     var filtered: Results<Object>!
     var shouldShowSearchResults = false
-    var pictures = [UIImage]()
+    var pictures = [String: UIImage]()
+    var searchTask: DispatchWorkItem?
     
     @IBOutlet var pictureTable: UITableView!
     
@@ -69,7 +70,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         cell.nameLabel.text = quip.name
         cell.categoryLabel.text = quip.category
-        cell.pictureView.image = pictures[indexPath.row]
+        cell.pictureView.image = pictures[quip.id]
         return cell
     }
     
@@ -125,7 +126,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         reload()
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func applySearch(_ searchText: String) {
         if searchText != "" {
             shouldShowSearchResults = true
             reload()
@@ -134,6 +135,15 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
             shouldShowSearchResults = false
             reload()
         }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.searchTask?.cancel()
+        let task = DispatchWorkItem { [weak self] in
+            self?.applySearch(searchText)
+        }
+       
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75, execute: task)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
