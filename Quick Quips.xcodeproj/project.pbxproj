@@ -20,6 +20,7 @@
 		59A6431B1EDD0BEE0075778E /* TableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A6431A1EDD0BEE0075778E /* TableCells.swift */; };
 		59A6431D1EDD125D0075778E /* EditTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A6431C1EDD125D0075778E /* EditTextViewController.swift */; };
 		59C4BBE41EED10F000DBCC40 /* PictureHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C4BBE31EED10F000DBCC40 /* PictureHolder.swift */; };
+		59CA833C22A779420067A6AC /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CA833B22A779420067A6AC /* Debouncer.swift */; };
 		BA9C737A1957B5FCE5595DBD /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9C723589F0F354E6D5F704 /* PictureViewController.swift */; };
 		BA9C7D1541A30B6DD8C32858 /* CreateTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9C70175C9E7928743CD020 /* CreateTextViewController.swift */; };
 		BA9C7E710E526436E4A85C1D /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9C7D036E280F1D81BE1836 /* DBHelper.swift */; };
@@ -54,6 +55,7 @@
 		59A6431A1EDD0BEE0075778E /* TableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCells.swift; sourceTree = "<group>"; };
 		59A6431C1EDD125D0075778E /* EditTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextViewController.swift; sourceTree = "<group>"; };
 		59C4BBE31EED10F000DBCC40 /* PictureHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureHolder.swift; sourceTree = "<group>"; };
+		59CA833B22A779420067A6AC /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		91DBBE45D713F7B4F0E9737B /* Pods-Quick Quips.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick Quips.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Quick Quips/Pods-Quick Quips.debug.xcconfig"; sourceTree = "<group>"; };
 		A01DCD12621C52B9738668C4 /* Pods-Quick QuipsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick QuipsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Quick QuipsTests/Pods-Quick QuipsTests.release.xcconfig"; sourceTree = "<group>"; };
 		BA9C70175C9E7928743CD020 /* CreateTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTextViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			children = (
 				BA9C7D036E280F1D81BE1836 /* DBHelper.swift */,
 				59C4BBE31EED10F000DBCC40 /* PictureHolder.swift */,
+				59CA833B22A779420067A6AC /* Debouncer.swift */,
 			);
 			name = Helpers;
 			path = ..;
@@ -389,6 +392,7 @@
 				BA9C737A1957B5FCE5595DBD /* PictureViewController.swift in Sources */,
 				59A6431B1EDD0BEE0075778E /* TableCells.swift in Sources */,
 				59C4BBE41EED10F000DBCC40 /* PictureHolder.swift in Sources */,
+				59CA833C22A779420067A6AC /* Debouncer.swift in Sources */,
 				BA9C7D1541A30B6DD8C32858 /* CreateTextViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

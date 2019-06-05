@@ -17,7 +17,8 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     var filtered: Results<Object>!
     var shouldShowSearchResults = false
     var pictures = [String: UIImage]()
-    var searchTask: DispatchWorkItem?
+
+    var debouncedFunc: Debounce<String>!
     
     @IBOutlet var pictureTable: UITableView!
     
@@ -27,15 +28,18 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         pictureTable.delegate = self
         searchBar.delegate = self
         quips = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("type = 'image'").sorted(byKeyPath: "frequency")
-        filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("type = 'image'").sorted(byKeyPath: "frequency")
-        reload()
+        filtered = quips
         addSearchBar()
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         pictureTable.tableFooterView = UIView()
+        debouncedFunc = debounce(interval: 250, queue: DispatchQueue.main, action: { (identifier: String) in
+            self.applySearch(identifier)
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
         reload()
+        pictures = PictureHolder.sharedInstance.populatePictures()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -84,7 +88,6 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
             let predicate = NSPredicate(format: "(name CONTAINS[c] %@ OR category CONTAINS[c] %@) AND type = 'image'", searchBar.text!, searchBar.text!)
             filtered = DBHelper.sharedInstance.getAll(ofType: Quip.self).sorted(byKeyPath: "frequency", ascending: true).filter(predicate)
         }
-        pictures = PictureHolder.sharedInstance.populatePictures()
         sortQuips()
         pictureTable.reloadData()
     }
@@ -138,12 +141,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.searchTask?.cancel()
-        let task = DispatchWorkItem { [weak self] in
-            self?.applySearch(searchText)
-        }
-       
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75, execute: task)
+        debouncedFunc(searchText)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
