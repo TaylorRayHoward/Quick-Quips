@@ -118,22 +118,34 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let imageUrl          = info[UIImagePickerControllerReferenceURL] as? URL
-        let imageName         = UUID().uuidString + (imageUrl?.lastPathComponent ?? "")
+        let imageUrl = info[UIImagePickerControllerReferenceURL] as? URL
+        let imageName = UUID().uuidString + (imageUrl?.lastPathComponent ?? "")
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
-        let photoURL          = NSURL(fileURLWithPath: documentDirectory)
-        let localPath         = photoURL.appendingPathComponent(imageName)
-        
+        let photoURL = NSURL(fileURLWithPath: documentDirectory)
+        let localPath = photoURL.appendingPathComponent(imageName)
+        let ext = localPath?.pathExtension
         let data = getDataForPicture(atUrl: imageUrl)
-        let gif = UIImage.gif(data: data!)
-        pictureView.image = gif
+
+        var pic: UIImage?
         
+        if ext?.lowercased() == "gif" {
+            pic = UIImage.gif(data: data!)
+        } else {
+            pic = UIImage(data: data!)
+        }
+        
+        if pic == nil {
+            picker.dismiss(animated: true, completion: nil)
+            return
+        }
+        
+        pictureView.image = pic
         urlForImage = localPath
         assetUrl = imageUrl
         baseUrlForImage = imageName
-        picker.dismiss(animated: true, completion: nil)
         helpTextLabel.isHidden = true
         action = saveType.photos
+        picker.dismiss(animated: true, completion: nil)
     }
     
     func getDataForPicture(atUrl imageUrl: URL?) -> Data? {
@@ -261,7 +273,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         let imageName         = UUID().uuidString + (urlForImage?.absoluteString ?? "")
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         let photoURL          = NSURL(fileURLWithPath: documentDirectory)
-        let localPath         = photoURL.appendingPathComponent(imageName)
+        let localPath  = photoURL.appendingPathComponent(imageName)
         
         baseUrlForImage = imageName
         urlForImage = localPath
@@ -270,7 +282,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
             do {
                 try clipboardData!.write(to: urlForImage!)
                 print("file saved")
-            }catch {
+            } catch {
                 print("error saving file")
             }
         }

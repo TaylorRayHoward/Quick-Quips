@@ -19,6 +19,7 @@
 		59A643191EDD033C0075778E /* Quip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A643181EDD033C0075778E /* Quip.swift */; };
 		59A6431B1EDD0BEE0075778E /* TableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A6431A1EDD0BEE0075778E /* TableCells.swift */; };
 		59A6431D1EDD125D0075778E /* EditTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A6431C1EDD125D0075778E /* EditTextViewController.swift */; };
+		59B70C1222AF581200991115 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B70C1122AF581200991115 /* UIImage.swift */; };
 		59C4BBE41EED10F000DBCC40 /* PictureHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C4BBE31EED10F000DBCC40 /* PictureHolder.swift */; };
 		59CA833C22A779420067A6AC /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CA833B22A779420067A6AC /* Debouncer.swift */; };
 		BA9C737A1957B5FCE5595DBD /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9C723589F0F354E6D5F704 /* PictureViewController.swift */; };
@@ -54,6 +55,7 @@
 		59A643181EDD033C0075778E /* Quip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quip.swift; sourceTree = "<group>"; };
 		59A6431A1EDD0BEE0075778E /* TableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCells.swift; sourceTree = "<group>"; };
 		59A6431C1EDD125D0075778E /* EditTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextViewController.swift; sourceTree = "<group>"; };
+		59B70C1122AF581200991115 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		59C4BBE31EED10F000DBCC40 /* PictureHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureHolder.swift; sourceTree = "<group>"; };
 		59CA833B22A779420067A6AC /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		91DBBE45D713F7B4F0E9737B /* Pods-Quick Quips.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick Quips.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Quick Quips/Pods-Quick Quips.debug.xcconfig"; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				BA9C7D036E280F1D81BE1836 /* DBHelper.swift */,
 				59C4BBE31EED10F000DBCC40 /* PictureHolder.swift */,
 				59CA833B22A779420067A6AC /* Debouncer.swift */,
+				59B70C1122AF581200991115 /* UIImage.swift */,
 			);
 			name = Helpers;
 			path = ..;
@@ -392,6 +395,7 @@
 				BA9C737A1957B5FCE5595DBD /* PictureViewController.swift in Sources */,
 				59A6431B1EDD0BEE0075778E /* TableCells.swift in Sources */,
 				59C4BBE41EED10F000DBCC40 /* PictureHolder.swift in Sources */,
+				59B70C1222AF581200991115 /* UIImage.swift in Sources */,
 				59CA833C22A779420067A6AC /* Debouncer.swift in Sources */,
 				BA9C7D1541A30B6DD8C32858 /* CreateTextViewController.swift in Sources */,
 			);
