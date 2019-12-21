@@ -5,8 +5,6 @@
 
 import UIKit
 import RealmSwift
-import Toaster
-import SwiftGifOrigin
 import MobileCoreServices
 
 
@@ -92,7 +90,6 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         pictureTable.reloadData()
     }
     
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         pictureTable.deselectRow(at: indexPath, animated: true)
         let quip: Quip
@@ -115,7 +112,6 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         DBHelper.sharedInstance.incrementFrequency(for: quip)
-        Toast(text: "Copied!", duration: Delay.short).show()
         reload()
     }
     

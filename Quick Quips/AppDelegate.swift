@@ -40,7 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // will automatically perform the migration
         _ = try! Realm()
         UIApplication.shared.statusBarStyle = .lightContent
-
         return true
     }
 

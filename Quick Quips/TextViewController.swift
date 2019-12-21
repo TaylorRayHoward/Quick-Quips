@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import Toaster
 
 class TextViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     @IBOutlet weak var quipsTableView: UITableView!
@@ -85,7 +84,6 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         DBHelper.sharedInstance.incrementFrequency(for: quip)
         UIPasteboard.general.string = cell.quipLabel.text!
-        Toast(text: "Copied!", duration: Delay.short).show()
         reload()
         quipsTableView.deselectRow(at: indexPath, animated: true)
     }

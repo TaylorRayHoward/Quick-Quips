@@ -8,8 +8,8 @@
 
 import UIKit
 import Photos
-import SwiftGifOrigin
 import MobileCoreServices
+import SwiftyGif
 
 class CreatePictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, UserEnteredDataDelegate {
     
@@ -104,7 +104,8 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
                 self.clipboardData = gif!
                 self.urlForImage = URL(string: "asset.gif")
                 self.helpTextLabel.isHidden = true
-                self.pictureView.image = UIImage.gif(data: gif!)
+                let image = try! UIImage(gifData: gif!)
+                self.pictureView.setGifImage(image)
             }
             self.action = .clipboard
         }
@@ -129,7 +130,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         var pic: UIImage?
         
         if ext?.lowercased() == "gif" {
-            pic = UIImage.gif(data: data!)
+            pic = try! UIImage(gifData: data!)
         } else {
             pic = UIImage(data: data!)
         }
