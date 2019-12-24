@@ -6,6 +6,7 @@
 import UIKit
 import RealmSwift
 import MobileCoreServices
+import Toast
 
 
 class PictureViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
@@ -100,6 +101,8 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
             quip = quips[indexPath.row] as! Quip
         }
         let quipText = quip.text
+        let group = DispatchGroup()
+        group.enter()
         DispatchQueue.global(qos: .background).async {
             let data = PictureHolder.sharedInstance.getImageFrom(path: quipText)
             let image = UIImage(data: data!)
@@ -110,6 +113,10 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
             else {
                 UIPasteboard.general.image = image
             }
+            group.leave()
+        }
+        group.notify(queue: .main) {
+            self.view.makeToast("Picture successfuly copied")
         }
         DBHelper.sharedInstance.incrementFrequency(for: quip)
         reload()
@@ -140,7 +147,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         debouncedFunc(searchText)
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let cell = pictureTable.cellForRow(at: indexPath) as! ImageCell
             let deleteQuip = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("name = %@ AND type = 'image'", cell.nameLabel.text!).first! as! Quip

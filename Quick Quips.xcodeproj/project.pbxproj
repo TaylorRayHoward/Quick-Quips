@@ -10,6 +10,7 @@
 		56D8DF6723AEC33C0048B311 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 56D8DF6623AEC33C0048B311 /* Realm */; };
 		56D8DF6923AEC33C0048B311 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 56D8DF6823AEC33C0048B311 /* RealmSwift */; };
 		56D8DF6C23AEC5260048B311 /* SwiftyGif in Frameworks */ = {isa = PBXBuildFile; productRef = 56D8DF6B23AEC5260048B311 /* SwiftyGif */; };
+		56D8DF6F23B281EB0048B311 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 56D8DF6E23B281EB0048B311 /* Toast */; };
 		5907101F1EE0EB73005570D6 /* CreatePictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5907101E1EE0EB73005570D6 /* CreatePictureViewController.swift */; };
 		5965B4631EDCC6500059E612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5965B4621EDCC6500059E612 /* AppDelegate.swift */; };
 		5965B4651EDCC6500059E612 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5965B4641EDCC6500059E612 /* TextViewController.swift */; };
@@ -27,16 +28,6 @@
 		BA9C7E710E526436E4A85C1D /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9C7D036E280F1D81BE1836 /* DBHelper.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		5965B4741EDCC6500059E612 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5965B4571EDCC6500059E612 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5965B45E1EDCC6500059E612;
-			remoteInfo = "Quick Quips";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		5907101E1EE0EB73005570D6 /* CreatePictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePictureViewController.swift; sourceTree = "<group>"; };
 		5965B45F1EDCC6500059E612 /* Quick Quips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quick Quips.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,7 +37,6 @@
 		5965B4691EDCC6500059E612 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5965B46C1EDCC6500059E612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5965B46E1EDCC6500059E612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5965B4731EDCC6500059E612 /* Quick QuipsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Quick QuipsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		59A643181EDD033C0075778E /* Quip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quip.swift; sourceTree = "<group>"; };
 		59A6431A1EDD0BEE0075778E /* TableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCells.swift; sourceTree = "<group>"; };
 		59A6431C1EDD125D0075778E /* EditTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextViewController.swift; sourceTree = "<group>"; };
@@ -63,16 +53,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56D8DF6F23B281EB0048B311 /* Toast in Frameworks */,
 				56D8DF6923AEC33C0048B311 /* RealmSwift in Frameworks */,
 				56D8DF6723AEC33C0048B311 /* Realm in Frameworks */,
 				56D8DF6C23AEC5260048B311 /* SwiftyGif in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5965B4701EDCC6500059E612 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,7 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				5965B45F1EDCC6500059E612 /* Quick Quips.app */,
-				5965B4731EDCC6500059E612 /* Quick QuipsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,28 +155,11 @@
 				56D8DF6623AEC33C0048B311 /* Realm */,
 				56D8DF6823AEC33C0048B311 /* RealmSwift */,
 				56D8DF6B23AEC5260048B311 /* SwiftyGif */,
+				56D8DF6E23B281EB0048B311 /* Toast */,
 			);
 			productName = "Quick Quips";
 			productReference = 5965B45F1EDCC6500059E612 /* Quick Quips.app */;
 			productType = "com.apple.product-type.application";
-		};
-		5965B4721EDCC6500059E612 /* Quick QuipsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5965B47F1EDCC6500059E612 /* Build configuration list for PBXNativeTarget "Quick QuipsTests" */;
-			buildPhases = (
-				5965B46F1EDCC6500059E612 /* Sources */,
-				5965B4701EDCC6500059E612 /* Frameworks */,
-				5965B4711EDCC6500059E612 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5965B4751EDCC6500059E612 /* PBXTargetDependency */,
-			);
-			name = "Quick QuipsTests";
-			productName = "Quick QuipsTests";
-			productReference = 5965B4731EDCC6500059E612 /* Quick QuipsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -208,15 +174,8 @@
 					5965B45E1EDCC6500059E612 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = GMBUTMZ22C;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1120;
 						ProvisioningStyle = Automatic;
-					};
-					5965B4721EDCC6500059E612 = {
-						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = GMBUTMZ22C;
-						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 5965B45E1EDCC6500059E612;
 					};
 				};
 			};
@@ -232,13 +191,13 @@
 			packageReferences = (
 				56D8DF6523AEC33C0048B311 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				56D8DF6A23AEC5250048B311 /* XCRemoteSwiftPackageReference "SwiftyGif" */,
+				56D8DF6D23B281EB0048B311 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = 5965B4601EDCC6500059E612 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				5965B45E1EDCC6500059E612 /* Quick Quips */,
-				5965B4721EDCC6500059E612 /* Quick QuipsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -251,13 +210,6 @@
 				5965B46D1EDCC6500059E612 /* LaunchScreen.storyboard in Resources */,
 				5965B46A1EDCC6500059E612 /* Assets.xcassets in Resources */,
 				5965B4681EDCC6500059E612 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5965B4711EDCC6500059E612 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,22 +235,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5965B46F1EDCC6500059E612 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		5965B4751EDCC6500059E612 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5965B45E1EDCC6500059E612 /* Quick Quips */;
-			targetProxy = 5965B4741EDCC6500059E612 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5965B4661EDCC6500059E612 /* Main.storyboard */ = {
@@ -447,7 +384,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.taylorrayhoward.iOS.Quip-Board";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -464,45 +401,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.taylorrayhoward.iOS.Quip-Board";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-			};
-			name = Release;
-		};
-		5965B4801EDCC6500059E612 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = GMBUTMZ22C;
-				INFOPLIST_FILE = "Quick QuipsTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.taylorrayhoward.iOS.Quick-QuipsTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Quick Quips.app/Quick Quips";
-			};
-			name = Debug;
-		};
-		5965B4811EDCC6500059E612 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = GMBUTMZ22C;
-				INFOPLIST_FILE = "Quick QuipsTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.taylorrayhoward.iOS.Quick-QuipsTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Quick Quips.app/Quick Quips";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -527,15 +426,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5965B47F1EDCC6500059E612 /* Build configuration list for PBXNativeTarget "Quick QuipsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5965B4801EDCC6500059E612 /* Debug */,
-				5965B4811EDCC6500059E612 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -555,6 +445,14 @@
 				minimumVersion = 5.2.0;
 			};
 		};
+		56D8DF6D23B281EB0048B311 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -572,6 +470,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 56D8DF6A23AEC5250048B311 /* XCRemoteSwiftPackageReference "SwiftyGif" */;
 			productName = SwiftyGif;
+		};
+		56D8DF6E23B281EB0048B311 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56D8DF6D23B281EB0048B311 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

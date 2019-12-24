@@ -38,10 +38,10 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
     
     func createDeniedAlert() -> UIAlertController {
         let alert = UIAlertController(title: "You have denied picture permission", message: "You must allow this from settings", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
-        alert.addAction(UIAlertAction(title: "Settings", style: UIAlertActionStyle.default, handler: {
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Settings", style: UIAlertAction.Style.default, handler: {
             _ in
-            guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                 return
             }
             
@@ -92,7 +92,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
                 let image = UIPasteboard.general.image
                 if let i = image {
                     self.urlForImage = URL(string: "asset.png")
-                    self.clipboardData = UIImagePNGRepresentation(image!)
+                    self.clipboardData = image!.pngData()
                     self.helpTextLabel.isHidden = true
                     self.pictureView.image = i
                 }
@@ -118,8 +118,11 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         present(actionSheet, animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let imageUrl = info[UIImagePickerControllerReferenceURL] as? URL
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+        let imageUrl = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.referenceURL)] as? URL
         let imageName = UUID().uuidString + (imageUrl?.lastPathComponent ?? "")
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         let photoURL = NSURL(fileURLWithPath: documentDirectory)
@@ -225,18 +228,18 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         let testQuip = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("name like[c] %@", nameText).first
         
         if !hasCompletedPhoto() {
-            let alert = UIAlertController(title: "Need picture", message: "Please select a photo", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            let alert = UIAlertController(title: "Need picture", message: "Please select a photo", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
         else if nameText == "" {
-            let alert = UIAlertController(title: "Missing Fields", message: "You must enter a name to save", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            let alert = UIAlertController(title: "Missing Fields", message: "You must enter a name to save", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
         else if testQuip != nil {
-            let alert = UIAlertController(title: "Non-unique Name", message: "The name must be unique", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            let alert = UIAlertController(title: "Non-unique Name", message: "The name must be unique", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
         else {
@@ -320,4 +323,14 @@ enum saveType {
     case photos
     case clipboard
     case url
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }
