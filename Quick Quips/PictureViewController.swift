@@ -16,7 +16,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     var filtered: Results<Object>!
     var shouldShowSearchResults = false
     var pictures = [String: UIImage]()
-
+    
     var debouncedFunc: Debounce<String>!
     
     @IBOutlet var pictureTable: UITableView!
@@ -29,7 +29,6 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         quips = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("type = 'image'").sorted(byKeyPath: "frequency")
         filtered = quips
         addSearchBar()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
         pictureTable.tableFooterView = UIView()
         debouncedFunc = debounce(interval: 250, queue: DispatchQueue.main, action: { (identifier: String) in
             self.applySearch(identifier)
@@ -101,22 +100,18 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
             quip = quips[indexPath.row] as! Quip
         }
         let quipText = quip.text
-        let group = DispatchGroup()
-        group.enter()
-        DispatchQueue.global(qos: .background).async {
-            let data = PictureHolder.sharedInstance.getImageFrom(path: quipText)
-            let image = UIImage(data: data!)
+        let image = self.pictures[quip.id]
+        DispatchQueue.global(qos: .default).async {
             let path = URL(string: quipText)
             if path?.pathExtension.uppercased() == "GIF" {
-                UIPasteboard.general.setData(data!, forPasteboardType: kUTTypeGIF as String)
+                UIPasteboard.general.setData(image!.imageData!, forPasteboardType: kUTTypeGIF as String)
             }
             else {
-                UIPasteboard.general.image = image
+                UIPasteboard.general.image = image?.fixOrientation()
             }
-            group.leave()
-        }
-        group.notify(queue: .main) {
-            self.view.makeToast("Picture successfuly copied")
+            DispatchQueue.main.async {
+                self.view.makeToast("Picture successfuly copied")
+            }
         }
         DBHelper.sharedInstance.incrementFrequency(for: quip)
         reload()

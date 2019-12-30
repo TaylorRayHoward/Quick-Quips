@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Now that we've told Realm how to handle the schema change, opening the file
         // will automatically perform the migration
         _ = try! Realm()
+        print(Realm.Configuration.defaultConfiguration.fileURL ?? "File url not fount")
         return true
     }
 

@@ -92,7 +92,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
                 let image = UIPasteboard.general.image
                 if let i = image {
                     self.urlForImage = URL(string: "asset.png")
-                    self.clipboardData = image!.pngData()
+                    self.clipboardData = image!.imageData
                     self.helpTextLabel.isHidden = true
                     self.pictureView.image = i
                 }
@@ -119,10 +119,8 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        let imageUrl = info[UIImagePickerController.InfoKey.referenceURL] as? URL
 
-        let imageUrl = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.referenceURL)] as? URL
         let imageName = UUID().uuidString + (imageUrl?.lastPathComponent ?? "")
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         let photoURL = NSURL(fileURLWithPath: documentDirectory)
@@ -323,14 +321,4 @@ enum saveType {
     case photos
     case clipboard
     case url
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-	return input.rawValue
 }
