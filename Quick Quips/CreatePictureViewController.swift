@@ -83,6 +83,9 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
                         self.present(alert, animated: true, completion: nil)
                     }
                 })
+            @unknown default:
+                let alert = self.createDeniedAlert()
+                self.present(alert, animated: true, completion: nil)
             }
         }
         
@@ -92,7 +95,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
                 let image = UIPasteboard.general.image
                 if let i = image {
                     self.urlForImage = URL(string: "asset.png")
-                    self.clipboardData = image!.imageData
+                    self.clipboardData = image!.imageData ?? image!.pngData()!
                     self.helpTextLabel.isHidden = true
                     self.pictureView.image = i
                 }

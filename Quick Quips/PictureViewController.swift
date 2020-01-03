@@ -37,7 +37,6 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         reload()
-        pictures = PictureHolder.sharedInstance.populatePictures()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -69,6 +68,9 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         else {
             quip = quips[indexPath.row] as! Quip
+        }
+        if(pictures[quip.id] == nil) {
+            pictures[quip.id] = UIImage(data: PictureHolder.sharedInstance.getImageFrom(path: quip.text)!)?.jpeg(.lowest)
         }
         cell.nameLabel.text = quip.name
         cell.categoryLabel.text = quip.category
@@ -104,7 +106,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         DispatchQueue.global(qos: .default).async {
             let path = URL(string: quipText)
             if path?.pathExtension.uppercased() == "GIF" {
-                UIPasteboard.general.setData(image!.imageData!, forPasteboardType: kUTTypeGIF as String)
+                UIPasteboard.general.setData(image!.jpeg(.lowest).imageData!, forPasteboardType: kUTTypeGIF as String)
             }
             else {
                 UIPasteboard.general.image = image?.fixOrientation()

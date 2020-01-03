@@ -86,6 +86,7 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
         UIPasteboard.general.string = cell.quipLabel.text!
         reload()
         quipsTableView.deselectRow(at: indexPath, animated: true)
+        self.view.makeToast("Text successfuly copied")
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
