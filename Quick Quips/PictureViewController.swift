@@ -15,7 +15,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     var quips: Results<Object>!
     var filtered: Results<Object>!
     var shouldShowSearchResults = false
-    var pictures = [String: UIImage]()
+    var pictures = NSCache<NSString, UIImage>()
     
     var debouncedFunc: Debounce<String>!
     
@@ -63,18 +63,31 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = pictureTable.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as! ImageCell
         let quip: Quip
+        
         if shouldShowSearchResults {
             quip = filtered[indexPath.row] as! Quip
         }
         else {
             quip = quips[indexPath.row] as! Quip
         }
-        if(pictures[quip.id] == nil) {
-            pictures[quip.id] = UIImage(data: PictureHolder.sharedInstance.getImageFrom(path: quip.text)!)?.jpeg(.lowest)
+        
+        if let pic = pictures.object(forKey: quip.id as NSString) {
+            cell.pictureView.image = pic
         }
+        else {
+            let text = quip.text
+            DispatchQueue.global(qos: .userInteractive).async {
+                let data = PictureHolder.sharedInstance.getImageFrom(path: text)!
+                let pic = UIImage(data: data)?.jpeg(.lowest)
+                DispatchQueue.main.async {
+                    cell.pictureView.image = pic?.fixOrientation()
+                    self.pictures.setObject(pic!, forKey: quip.id as NSString)
+                }
+            }
+        }
+        
         cell.nameLabel.text = quip.name
         cell.categoryLabel.text = quip.category
-        cell.pictureView.image = pictures[quip.id]
         return cell
     }
     
@@ -102,7 +115,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
             quip = quips[indexPath.row] as! Quip
         }
         let quipText = quip.text
-        let image = self.pictures[quip.id]
+        let image = self.pictures.object(forKey: quip.id as NSString) ?? UIImage(data: PictureHolder.sharedInstance.getImageFrom(path: quip.text)!)
         DispatchQueue.global(qos: .default).async {
             let path = URL(string: quipText)
             if path?.pathExtension.uppercased() == "GIF" {
@@ -116,7 +129,6 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         DBHelper.sharedInstance.incrementFrequency(for: quip)
-        reload()
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -158,5 +170,4 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         quips = quips.sorted(byKeyPath: "frequency", ascending: false)
         filtered = filtered.sorted(byKeyPath: "frequency", ascending: false)
     }
-    
 }
