@@ -62,6 +62,9 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = pictureTable.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as! ImageCell
+        cell.pictureView.image = nil
+        cell.tag = indexPath.row
+
         let quip: Quip
         
         if shouldShowSearchResults {
@@ -75,13 +78,33 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.pictureView.image = pic
         }
         else {
+            let loader = UIActivityIndicatorView(style: .gray)
+            loader.frame = cell.pictureView.frame
+            loader.startAnimating()
+            loader.center = cell.pictureView.center
             let text = quip.text
+            cell.pictureView.addSubview(loader)
+            
+            let scaleFactor = UIScreen.main.scale
+            let scale = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+            let size = cell.pictureView.bounds.size.applying(scale)
+            
             DispatchQueue.global(qos: .userInteractive).async {
-                let data = PictureHolder.sharedInstance.getImageFrom(path: text)!
-                let pic = UIImage(data: data)?.jpeg(.lowest)
+                let path = URL(string: text)
+                var pic: UIImage
+                if path?.pathExtension.uppercased() == "GIF" {
+                    let data = PictureHolder.sharedInstance.getImageDataFrom(path: text)!
+                    pic = UIImage(data: data)!
+                } else {
+                    pic = PictureHolder.sharedInstance.getScaledImageFrom(path: text, for: size).fixOrientation()
+                }
                 DispatchQueue.main.async {
-                    cell.pictureView.image = pic?.fixOrientation()
-                    self.pictures.setObject(pic!, forKey: quip.id as NSString)
+                    if(cell.tag == indexPath.row) {
+                        cell.pictureView.image = pic
+                        self.pictures.setObject(pic, forKey: quip.id as NSString)
+                    }
+                    loader.stopAnimating()
+                    loader.removeFromSuperview()
                 }
             }
         }
@@ -115,14 +138,14 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
             quip = quips[indexPath.row] as! Quip
         }
         let quipText = quip.text
-        let image = self.pictures.object(forKey: quip.id as NSString) ?? UIImage(data: PictureHolder.sharedInstance.getImageFrom(path: quip.text)!)
+        let data = PictureHolder.sharedInstance.getImageDataFrom(path: quip.text)!
         DispatchQueue.global(qos: .default).async {
             let path = URL(string: quipText)
             if path?.pathExtension.uppercased() == "GIF" {
-                UIPasteboard.general.setData(image!.jpeg(.lowest).imageData!, forPasteboardType: kUTTypeGIF as String)
+                UIPasteboard.general.setData(data, forPasteboardType: kUTTypeGIF as String)
             }
             else {
-                UIPasteboard.general.image = image?.fixOrientation()
+                UIPasteboard.general.image = UIImage(data: data)!.fixOrientation()
             }
             DispatchQueue.main.async {
                 self.view.makeToast("Picture successfuly copied")
