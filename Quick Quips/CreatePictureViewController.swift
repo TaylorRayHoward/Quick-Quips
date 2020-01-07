@@ -8,8 +8,8 @@
 
 import UIKit
 import Photos
-import SwiftGifOrigin
 import MobileCoreServices
+import SwiftyGif
 
 class CreatePictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, UserEnteredDataDelegate {
     
@@ -38,10 +38,10 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
     
     func createDeniedAlert() -> UIAlertController {
         let alert = UIAlertController(title: "You have denied picture permission", message: "You must allow this from settings", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
-        alert.addAction(UIAlertAction(title: "Settings", style: UIAlertActionStyle.default, handler: {
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Settings", style: UIAlertAction.Style.default, handler: {
             _ in
-            guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                 return
             }
             
@@ -83,6 +83,9 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
                         self.present(alert, animated: true, completion: nil)
                     }
                 })
+            @unknown default:
+                let alert = self.createDeniedAlert()
+                self.present(alert, animated: true, completion: nil)
             }
         }
         
@@ -92,7 +95,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
                 let image = UIPasteboard.general.image
                 if let i = image {
                     self.urlForImage = URL(string: "asset.png")
-                    self.clipboardData = UIImagePNGRepresentation(image!)
+                    self.clipboardData = image!.imageData ?? image!.pngData()!
                     self.helpTextLabel.isHidden = true
                     self.pictureView.image = i
                 }
@@ -104,7 +107,8 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
                 self.clipboardData = gif!
                 self.urlForImage = URL(string: "asset.gif")
                 self.helpTextLabel.isHidden = true
-                self.pictureView.image = UIImage.gif(data: gif!)
+                let image = try! UIImage(gifData: gif!)
+                self.pictureView.setGifImage(image)
             }
             self.action = .clipboard
         }
@@ -117,8 +121,9 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         present(actionSheet, animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let imageUrl = info[UIImagePickerControllerReferenceURL] as? URL
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let imageUrl = info[UIImagePickerController.InfoKey.referenceURL] as? URL
+
         let imageName = UUID().uuidString + (imageUrl?.lastPathComponent ?? "")
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         let photoURL = NSURL(fileURLWithPath: documentDirectory)
@@ -129,7 +134,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         var pic: UIImage?
         
         if ext?.lowercased() == "gif" {
-            pic = UIImage.gif(data: data!)
+            pic = try! UIImage(gifData: data!)
         } else {
             pic = UIImage(data: data!)
         }
@@ -139,7 +144,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
             return
         }
         
-        pictureView.image = pic
+        pictureView.setImage(pic!)
         urlForImage = localPath
         assetUrl = imageUrl
         baseUrlForImage = imageName
@@ -149,7 +154,6 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
     }
     
     func getDataForPicture(atUrl imageUrl: URL?) -> Data? {
-        
         let ops = PHImageRequestOptions()
         ops.isSynchronous = true
         
@@ -161,7 +165,6 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
             }
         })
         return returnData
-        
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -224,18 +227,18 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
         let testQuip = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("name like[c] %@", nameText).first
         
         if !hasCompletedPhoto() {
-            let alert = UIAlertController(title: "Need picture", message: "Please select a photo", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            let alert = UIAlertController(title: "Need picture", message: "Please select a photo", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
         else if nameText == "" {
-            let alert = UIAlertController(title: "Missing Fields", message: "You must enter a name to save", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            let alert = UIAlertController(title: "Missing Fields", message: "You must enter a name to save", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
         else if testQuip != nil {
-            let alert = UIAlertController(title: "Non-unique Name", message: "The name must be unique", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            let alert = UIAlertController(title: "Non-unique Name", message: "The name must be unique", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
         else {

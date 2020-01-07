@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //Realm Migrations
         // Override point for customization after application launch.
         let config = Realm.Configuration(
@@ -39,8 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Now that we've told Realm how to handle the schema change, opening the file
         // will automatically perform the migration
         _ = try! Realm()
-        UIApplication.shared.statusBarStyle = .lightContent
-
+        print(Realm.Configuration.defaultConfiguration.fileURL ?? "File url not fount")
         return true
     }
 

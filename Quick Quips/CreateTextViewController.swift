@@ -63,8 +63,8 @@ class CreateTextViewController: UITableViewController, UserEnteredDataDelegate {
         let quipText = getQuipText()
         let testQuip = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("name like[c] %@", nameText ?? "").first
         if testQuip != nil {
-            let alert = UIAlertController(title: "Non-unique Name", message: "The name must be unique", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            let alert = UIAlertController(title: "Non-unique Name", message: "The name must be unique", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
         else if let name = nameText, let quip = quipText, name != "", quip != "" {
@@ -73,8 +73,8 @@ class CreateTextViewController: UITableViewController, UserEnteredDataDelegate {
             navigationController?.popViewController(animated: true)
         }
         else {
-            let alert = UIAlertController(title: "Missing Fields", message: "You must enter a name and text to save", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            let alert = UIAlertController(title: "Missing Fields", message: "You must enter a name and text to save", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }

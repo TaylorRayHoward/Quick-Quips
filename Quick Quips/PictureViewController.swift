@@ -5,9 +5,9 @@
 
 import UIKit
 import RealmSwift
-import Toaster
-import SwiftGifOrigin
 import MobileCoreServices
+import Toast
+import SwiftyGif
 
 
 class PictureViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
@@ -16,8 +16,8 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     var quips: Results<Object>!
     var filtered: Results<Object>!
     var shouldShowSearchResults = false
-    var pictures = [String: UIImage]()
-
+    var pictures = NSCache<NSString, UIImage>()
+    let gifManager = SwiftyGifManager(memoryLimit:100)
     var debouncedFunc: Debounce<String>!
     
     @IBOutlet var pictureTable: UITableView!
@@ -30,7 +30,6 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         quips = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("type = 'image'").sorted(byKeyPath: "frequency")
         filtered = quips
         addSearchBar()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
         pictureTable.tableFooterView = UIView()
         debouncedFunc = debounce(interval: 250, queue: DispatchQueue.main, action: { (identifier: String) in
             self.applySearch(identifier)
@@ -39,7 +38,6 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         reload()
-        pictures = PictureHolder.sharedInstance.populatePictures()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -65,16 +63,73 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = pictureTable.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as! ImageCell
+        cell.pictureView.clear()
+        cell.tag = indexPath.row
+        
         let quip: Quip
+        
         if shouldShowSearchResults {
             quip = filtered[indexPath.row] as! Quip
         }
         else {
             quip = quips[indexPath.row] as! Quip
         }
+        
+        if let pic = pictures.object(forKey: quip.id as NSString) {
+            
+            cell.pictureView.setImage(pic, manager: gifManager)
+        }
+        else {
+            let loader = UIActivityIndicatorView()
+            loader.frame = cell.pictureView.frame
+            loader.startAnimating()
+            loader.center = cell.pictureView.center
+            if #available(iOS 12.0, *) {
+                if self.traitCollection.userInterfaceStyle == .dark {
+                    loader.color = .white
+                } else {
+                    loader.color = .black
+                }
+            } else {
+                loader.color = .black
+            }
+            
+            cell.pictureView.addSubview(loader)
+            
+            let text = quip.text
+            let scaleFactor = UIScreen.main.scale
+            let scale = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+            let size = cell.pictureView.bounds.size.applying(scale)
+            
+            DispatchQueue.global(qos: .userInteractive).async {
+                let path = URL(string: text)
+                var pic: UIImage
+                let isGif = path?.pathExtension.uppercased() == "GIF"
+                if isGif {
+                    // Some gifs don't render correctly, defense is to just show the
+                    do {
+                        let data = PictureHolder.sharedInstance.getImageDataFrom(path: text)!
+                        pic = try UIImage(gifData: data, levelOfIntegrity: 0.5)
+                    } catch {
+                        pic = PictureHolder.sharedInstance.getScaledImageFrom(path: text, for: size).fixOrientation()
+                    }
+                } else {
+                    pic = PictureHolder.sharedInstance.getScaledImageFrom(path: text, for: size).fixOrientation()
+                }
+                DispatchQueue.main.async {
+                    // TODO: Find out why caching gifs ruins everything
+                    if !isGif {
+                        self.pictures.setObject(pic, forKey: quip.id as NSString)
+                    }
+                    cell.pictureView.setImage(pic, manager: self.gifManager)
+                    loader.stopAnimating()
+                    loader.removeFromSuperview()
+                }
+            }
+        }
+        
         cell.nameLabel.text = quip.name
         cell.categoryLabel.text = quip.category
-        cell.pictureView.image = pictures[quip.id]
         return cell
     }
     
@@ -92,7 +147,6 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         pictureTable.reloadData()
     }
     
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         pictureTable.deselectRow(at: indexPath, animated: true)
         let quip: Quip
@@ -103,20 +157,20 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
             quip = quips[indexPath.row] as! Quip
         }
         let quipText = quip.text
-        DispatchQueue.global(qos: .background).async {
-            let data = PictureHolder.sharedInstance.getImageFrom(path: quipText)
-            let image = UIImage(data: data!)
+        let data = PictureHolder.sharedInstance.getImageDataFrom(path: quip.text)!
+        DispatchQueue.global(qos: .default).async {
             let path = URL(string: quipText)
             if path?.pathExtension.uppercased() == "GIF" {
-                UIPasteboard.general.setData(data!, forPasteboardType: kUTTypeGIF as String)
+                UIPasteboard.general.setData(data, forPasteboardType: kUTTypeGIF as String)
             }
             else {
-                UIPasteboard.general.image = image
+                UIPasteboard.general.image = UIImage(data: data)!.fixOrientation()
+            }
+            DispatchQueue.main.async {
+                self.view.makeToast("Picture successfuly copied")
             }
         }
         DBHelper.sharedInstance.incrementFrequency(for: quip)
-        Toast(text: "Copied!", duration: Delay.short).show()
-        reload()
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -144,7 +198,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         debouncedFunc(searchText)
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let cell = pictureTable.cellForRow(at: indexPath) as! ImageCell
             let deleteQuip = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("name = %@ AND type = 'image'", cell.nameLabel.text!).first! as! Quip
@@ -158,5 +212,4 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         quips = quips.sorted(byKeyPath: "frequency", ascending: false)
         filtered = filtered.sorted(byKeyPath: "frequency", ascending: false)
     }
-    
 }

@@ -3,19 +3,22 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		38DBFA754869482211BACD6C /* Pods_Quick_QuipsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508E9EFC0315EAC5CD0A49BE /* Pods_Quick_QuipsTests.framework */; };
-		3E4BE53C93DB0629A9E1A9A1 /* Pods_Quick_Quips.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 079B5A3BE10812E490ECB50C /* Pods_Quick_Quips.framework */; };
+		56B8F3FC23C2E1D80028BBD6 /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 56B8F3FB23C2E1D80028BBD6 /* KingfisherSwiftUI */; };
+		56B8F3FE23C2E1D80028BBD6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 56B8F3FD23C2E1D80028BBD6 /* Kingfisher */; };
+		56D8DF6723AEC33C0048B311 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 56D8DF6623AEC33C0048B311 /* Realm */; };
+		56D8DF6923AEC33C0048B311 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 56D8DF6823AEC33C0048B311 /* RealmSwift */; };
+		56D8DF6C23AEC5260048B311 /* SwiftyGif in Frameworks */ = {isa = PBXBuildFile; productRef = 56D8DF6B23AEC5260048B311 /* SwiftyGif */; };
+		56D8DF6F23B281EB0048B311 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 56D8DF6E23B281EB0048B311 /* Toast */; };
 		5907101F1EE0EB73005570D6 /* CreatePictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5907101E1EE0EB73005570D6 /* CreatePictureViewController.swift */; };
 		5965B4631EDCC6500059E612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5965B4621EDCC6500059E612 /* AppDelegate.swift */; };
 		5965B4651EDCC6500059E612 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5965B4641EDCC6500059E612 /* TextViewController.swift */; };
 		5965B4681EDCC6500059E612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5965B4661EDCC6500059E612 /* Main.storyboard */; };
 		5965B46A1EDCC6500059E612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5965B4691EDCC6500059E612 /* Assets.xcassets */; };
 		5965B46D1EDCC6500059E612 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5965B46B1EDCC6500059E612 /* LaunchScreen.storyboard */; };
-		5965B4781EDCC6500059E612 /* Quick_QuipsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5965B4771EDCC6500059E612 /* Quick_QuipsTests.swift */; };
 		59A643191EDD033C0075778E /* Quip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A643181EDD033C0075778E /* Quip.swift */; };
 		59A6431B1EDD0BEE0075778E /* TableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A6431A1EDD0BEE0075778E /* TableCells.swift */; };
 		59A6431D1EDD125D0075778E /* EditTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A6431C1EDD125D0075778E /* EditTextViewController.swift */; };
@@ -27,20 +30,7 @@
 		BA9C7E710E526436E4A85C1D /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9C7D036E280F1D81BE1836 /* DBHelper.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		5965B4741EDCC6500059E612 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5965B4571EDCC6500059E612 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5965B45E1EDCC6500059E612;
-			remoteInfo = "Quick Quips";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		079B5A3BE10812E490ECB50C /* Pods_Quick_Quips.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quick_Quips.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		25FCFD4AB0AF67BB3494851B /* Pods-Quick Quips.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick Quips.release.xcconfig"; path = "Pods/Target Support Files/Pods-Quick Quips/Pods-Quick Quips.release.xcconfig"; sourceTree = "<group>"; };
-		508E9EFC0315EAC5CD0A49BE /* Pods_Quick_QuipsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quick_QuipsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5907101E1EE0EB73005570D6 /* CreatePictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePictureViewController.swift; sourceTree = "<group>"; };
 		5965B45F1EDCC6500059E612 /* Quick Quips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quick Quips.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5965B4621EDCC6500059E612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,21 +39,15 @@
 		5965B4691EDCC6500059E612 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5965B46C1EDCC6500059E612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5965B46E1EDCC6500059E612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5965B4731EDCC6500059E612 /* Quick QuipsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Quick QuipsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5965B4771EDCC6500059E612 /* Quick_QuipsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quick_QuipsTests.swift; sourceTree = "<group>"; };
-		5965B4791EDCC6500059E612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59A643181EDD033C0075778E /* Quip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quip.swift; sourceTree = "<group>"; };
 		59A6431A1EDD0BEE0075778E /* TableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCells.swift; sourceTree = "<group>"; };
 		59A6431C1EDD125D0075778E /* EditTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextViewController.swift; sourceTree = "<group>"; };
 		59B70C1122AF581200991115 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		59C4BBE31EED10F000DBCC40 /* PictureHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureHolder.swift; sourceTree = "<group>"; };
 		59CA833B22A779420067A6AC /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
-		91DBBE45D713F7B4F0E9737B /* Pods-Quick Quips.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick Quips.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Quick Quips/Pods-Quick Quips.debug.xcconfig"; sourceTree = "<group>"; };
-		A01DCD12621C52B9738668C4 /* Pods-Quick QuipsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick QuipsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Quick QuipsTests/Pods-Quick QuipsTests.release.xcconfig"; sourceTree = "<group>"; };
 		BA9C70175C9E7928743CD020 /* CreateTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTextViewController.swift; sourceTree = "<group>"; };
 		BA9C723589F0F354E6D5F704 /* PictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
 		BA9C7D036E280F1D81BE1836 /* DBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DBHelper.swift; path = "Quick Quips/DBHelper.swift"; sourceTree = "<group>"; };
-		F355F322A9FC91FA92E9A5DD /* Pods-Quick QuipsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick QuipsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Quick QuipsTests/Pods-Quick QuipsTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,32 +55,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E4BE53C93DB0629A9E1A9A1 /* Pods_Quick_Quips.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5965B4701EDCC6500059E612 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38DBFA754869482211BACD6C /* Pods_Quick_QuipsTests.framework in Frameworks */,
+				56B8F3FE23C2E1D80028BBD6 /* Kingfisher in Frameworks */,
+				56D8DF6F23B281EB0048B311 /* Toast in Frameworks */,
+				56D8DF6923AEC33C0048B311 /* RealmSwift in Frameworks */,
+				56D8DF6723AEC33C0048B311 /* Realm in Frameworks */,
+				56D8DF6C23AEC5260048B311 /* SwiftyGif in Frameworks */,
+				56B8F3FC23C2E1D80028BBD6 /* KingfisherSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2B80B78718049A570F045858 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				91DBBE45D713F7B4F0E9737B /* Pods-Quick Quips.debug.xcconfig */,
-				25FCFD4AB0AF67BB3494851B /* Pods-Quick Quips.release.xcconfig */,
-				F355F322A9FC91FA92E9A5DD /* Pods-Quick QuipsTests.debug.xcconfig */,
-				A01DCD12621C52B9738668C4 /* Pods-Quick QuipsTests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		592985931EDCC822006162EB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,10 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				5965B4611EDCC6500059E612 /* Quick Quips */,
-				5965B4761EDCC6500059E612 /* Quick QuipsTests */,
 				5965B4601EDCC6500059E612 /* Products */,
-				2B80B78718049A570F045858 /* Pods */,
-				C6A8D9F6CD6367DFA46130C1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -133,7 +100,6 @@
 			isa = PBXGroup;
 			children = (
 				5965B45F1EDCC6500059E612 /* Quick Quips.app */,
-				5965B4731EDCC6500059E612 /* Quick QuipsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -150,15 +116,6 @@
 				592985931EDCC822006162EB /* ViewControllers */,
 			);
 			path = "Quick Quips";
-			sourceTree = "<group>";
-		};
-		5965B4761EDCC6500059E612 /* Quick QuipsTests */ = {
-			isa = PBXGroup;
-			children = (
-				5965B4771EDCC6500059E612 /* Quick_QuipsTests.swift */,
-				5965B4791EDCC6500059E612 /* Info.plist */,
-			);
-			path = "Quick QuipsTests";
 			sourceTree = "<group>";
 		};
 		59A643171EDD03290075778E /* Objects */ = {
@@ -182,15 +139,6 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		C6A8D9F6CD6367DFA46130C1 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				079B5A3BE10812E490ECB50C /* Pods_Quick_Quips.framework */,
-				508E9EFC0315EAC5CD0A49BE /* Pods_Quick_QuipsTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -198,40 +146,26 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5965B47C1EDCC6500059E612 /* Build configuration list for PBXNativeTarget "Quick Quips" */;
 			buildPhases = (
-				4ED4F005D700842C7BDC9F3E /* [CP] Check Pods Manifest.lock */,
 				5965B45B1EDCC6500059E612 /* Sources */,
 				5965B45C1EDCC6500059E612 /* Frameworks */,
 				5965B45D1EDCC6500059E612 /* Resources */,
-				FA93281020B1028B06B48EB7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Quick Quips";
+			packageProductDependencies = (
+				56D8DF6623AEC33C0048B311 /* Realm */,
+				56D8DF6823AEC33C0048B311 /* RealmSwift */,
+				56D8DF6B23AEC5260048B311 /* SwiftyGif */,
+				56D8DF6E23B281EB0048B311 /* Toast */,
+				56B8F3FB23C2E1D80028BBD6 /* KingfisherSwiftUI */,
+				56B8F3FD23C2E1D80028BBD6 /* Kingfisher */,
+			);
 			productName = "Quick Quips";
 			productReference = 5965B45F1EDCC6500059E612 /* Quick Quips.app */;
 			productType = "com.apple.product-type.application";
-		};
-		5965B4721EDCC6500059E612 /* Quick QuipsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5965B47F1EDCC6500059E612 /* Build configuration list for PBXNativeTarget "Quick QuipsTests" */;
-			buildPhases = (
-				B4318181A84D0994651C4F73 /* [CP] Check Pods Manifest.lock */,
-				5965B46F1EDCC6500059E612 /* Sources */,
-				5965B4701EDCC6500059E612 /* Frameworks */,
-				5965B4711EDCC6500059E612 /* Resources */,
-				5E4EE2AFDBF528EB869C7430 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5965B4751EDCC6500059E612 /* PBXTargetDependency */,
-			);
-			name = "Quick QuipsTests";
-			productName = "Quick QuipsTests";
-			productReference = 5965B4731EDCC6500059E612 /* Quick QuipsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -240,40 +174,37 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Taylor Howard";
 				TargetAttributes = {
 					5965B45E1EDCC6500059E612 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = GMBUTMZ22C;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1120;
 						ProvisioningStyle = Automatic;
-					};
-					5965B4721EDCC6500059E612 = {
-						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = GMBUTMZ22C;
-						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 5965B45E1EDCC6500059E612;
 					};
 				};
 			};
 			buildConfigurationList = 5965B45A1EDCC6500059E612 /* Build configuration list for PBXProject "Quick Quips" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
 			mainGroup = 5965B4561EDCC6500059E612;
+			packageReferences = (
+				56D8DF6523AEC33C0048B311 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				56D8DF6A23AEC5250048B311 /* XCRemoteSwiftPackageReference "SwiftyGif" */,
+				56D8DF6D23B281EB0048B311 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				56B8F3FA23C2E1D80028BBD6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 5965B4601EDCC6500059E612 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				5965B45E1EDCC6500059E612 /* Quick Quips */,
-				5965B4721EDCC6500059E612 /* Quick QuipsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -289,97 +220,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5965B4711EDCC6500059E612 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		4ED4F005D700842C7BDC9F3E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Quick Quips-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5E4EE2AFDBF528EB869C7430 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Quick QuipsTests/Pods-Quick QuipsTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Quick QuipsTests/Pods-Quick QuipsTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B4318181A84D0994651C4F73 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Quick QuipsTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FA93281020B1028B06B48EB7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Quick Quips/Pods-Quick Quips-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftGifOrigin/SwiftGifOrigin.framework",
-				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGifOrigin.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Quick Quips/Pods-Quick Quips-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5965B45B1EDCC6500059E612 /* Sources */ = {
@@ -401,23 +242,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5965B46F1EDCC6500059E612 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5965B4781EDCC6500059E612 /* Quick_QuipsTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		5965B4751EDCC6500059E612 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5965B45E1EDCC6500059E612 /* Quick Quips */;
-			targetProxy = 5965B4741EDCC6500059E612 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5965B4661EDCC6500059E612 /* Main.storyboard */ = {
@@ -443,6 +268,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -453,6 +279,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -460,6 +287,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -500,6 +328,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -510,6 +339,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -517,6 +347,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -540,7 +371,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -548,63 +380,35 @@
 		};
 		5965B47D1EDCC6500059E612 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 91DBBE45D713F7B4F0E9737B /* Pods-Quick Quips.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = GMBUTMZ22C;
 				INFOPLIST_FILE = "Quick Quips/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.taylorrayhoward.iOS.Quip-Board";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		5965B47E1EDCC6500059E612 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25FCFD4AB0AF67BB3494851B /* Pods-Quick Quips.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = GMBUTMZ22C;
 				INFOPLIST_FILE = "Quick Quips/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.taylorrayhoward.iOS.Quip-Board";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-			};
-			name = Release;
-		};
-		5965B4801EDCC6500059E612 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F355F322A9FC91FA92E9A5DD /* Pods-Quick QuipsTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = GMBUTMZ22C;
-				INFOPLIST_FILE = "Quick QuipsTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.taylorrayhoward.iOS.Quick-QuipsTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Quick Quips.app/Quick Quips";
-			};
-			name = Debug;
-		};
-		5965B4811EDCC6500059E612 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A01DCD12621C52B9738668C4 /* Pods-Quick QuipsTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = GMBUTMZ22C;
-				INFOPLIST_FILE = "Quick QuipsTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.taylorrayhoward.iOS.Quick-QuipsTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Quick Quips.app/Quick Quips";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -629,16 +433,75 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5965B47F1EDCC6500059E612 /* Build configuration list for PBXNativeTarget "Quick QuipsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5965B4801EDCC6500059E612 /* Debug */,
-				5965B4811EDCC6500059E612 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		56B8F3FA23C2E1D80028BBD6 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.12.0;
+			};
+		};
+		56D8DF6523AEC33C0048B311 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.12.0;
+			};
+		};
+		56D8DF6A23AEC5250048B311 /* XCRemoteSwiftPackageReference "SwiftyGif" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kirualex/SwiftyGif";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
+			};
+		};
+		56D8DF6D23B281EB0048B311 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		56B8F3FB23C2E1D80028BBD6 /* KingfisherSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56B8F3FA23C2E1D80028BBD6 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = KingfisherSwiftUI;
+		};
+		56B8F3FD23C2E1D80028BBD6 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56B8F3FA23C2E1D80028BBD6 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		56D8DF6623AEC33C0048B311 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56D8DF6523AEC33C0048B311 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		56D8DF6823AEC33C0048B311 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56D8DF6523AEC33C0048B311 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+		56D8DF6B23AEC5260048B311 /* SwiftyGif */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56D8DF6A23AEC5250048B311 /* XCRemoteSwiftPackageReference "SwiftyGif" */;
+			productName = SwiftyGif;
+		};
+		56D8DF6E23B281EB0048B311 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56D8DF6D23B281EB0048B311 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5965B4571EDCC6500059E612 /* Project object */;
 }

@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import Toaster
 
 class TextViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     @IBOutlet weak var quipsTableView: UITableView!
@@ -85,9 +84,9 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         DBHelper.sharedInstance.incrementFrequency(for: quip)
         UIPasteboard.general.string = cell.quipLabel.text!
-        Toast(text: "Copied!", duration: Delay.short).show()
         reload()
         quipsTableView.deselectRow(at: indexPath, animated: true)
+        self.view.makeToast("Text successfuly copied")
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -123,7 +122,7 @@ class TextViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let cell = tableView.cellForRow(at: indexPath) as! TextCell
             let deleteQuip = DBHelper.sharedInstance.getAll(ofType: Quip.self).filter("name = %@ AND type = 'text'", cell.nameLabel.text!).first!
