@@ -7,6 +7,7 @@ import UIKit
 import RealmSwift
 import MobileCoreServices
 import Toast
+import SwiftyGif
 
 
 class PictureViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
@@ -16,7 +17,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     var filtered: Results<Object>!
     var shouldShowSearchResults = false
     var pictures = NSCache<NSString, UIImage>()
-    
+    let gifManager = SwiftyGifManager(memoryLimit:100)
     var debouncedFunc: Debounce<String>!
     
     @IBOutlet var pictureTable: UITableView!
@@ -62,7 +63,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = pictureTable.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as! ImageCell
-        cell.pictureView.image = nil
+        cell.pictureView.clear()
         cell.tag = indexPath.row
 
         let quip: Quip
@@ -75,16 +76,17 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
         if let pic = pictures.object(forKey: quip.id as NSString) {
-            cell.pictureView.image = pic
+            
+            cell.pictureView.setImage(pic, manager: gifManager)
         }
         else {
             let loader = UIActivityIndicatorView(style: .gray)
             loader.frame = cell.pictureView.frame
             loader.startAnimating()
             loader.center = cell.pictureView.center
-            let text = quip.text
             cell.pictureView.addSubview(loader)
             
+            let text = quip.text
             let scaleFactor = UIScreen.main.scale
             let scale = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
             let size = cell.pictureView.bounds.size.applying(scale)
@@ -92,17 +94,19 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
             DispatchQueue.global(qos: .userInteractive).async {
                 let path = URL(string: text)
                 var pic: UIImage
-                if path?.pathExtension.uppercased() == "GIF" {
+                let isGif = path?.pathExtension.uppercased() == "GIF"
+                if isGif {
                     let data = PictureHolder.sharedInstance.getImageDataFrom(path: text)!
-                    pic = UIImage(data: data)!
+                    pic = try! UIImage(gifData: data, levelOfIntegrity: 0.5)
                 } else {
                     pic = PictureHolder.sharedInstance.getScaledImageFrom(path: text, for: size).fixOrientation()
                 }
                 DispatchQueue.main.async {
-                    if(cell.tag == indexPath.row) {
-                        cell.pictureView.image = pic
+                    // TODO: Find out why caching gifs ruins everything
+                    if !isGif {
                         self.pictures.setObject(pic, forKey: quip.id as NSString)
                     }
+                    cell.pictureView.setImage(pic, manager: self.gifManager)
                     loader.stopAnimating()
                     loader.removeFromSuperview()
                 }

@@ -154,7 +154,6 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
     }
     
     func getDataForPicture(atUrl imageUrl: URL?) -> Data? {
-        
         let ops = PHImageRequestOptions()
         ops.isSynchronous = true
         
@@ -166,7 +165,6 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
             }
         })
         return returnData
-        
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
