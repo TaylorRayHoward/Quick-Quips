@@ -65,7 +65,7 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = pictureTable.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as! ImageCell
         cell.pictureView.clear()
         cell.tag = indexPath.row
-
+        
         let quip: Quip
         
         if shouldShowSearchResults {
@@ -80,10 +80,20 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.pictureView.setImage(pic, manager: gifManager)
         }
         else {
-            let loader = UIActivityIndicatorView(style: .gray)
+            let loader = UIActivityIndicatorView()
             loader.frame = cell.pictureView.frame
             loader.startAnimating()
             loader.center = cell.pictureView.center
+            if #available(iOS 12.0, *) {
+                if self.traitCollection.userInterfaceStyle == .dark {
+                    loader.color = .white
+                } else {
+                    loader.color = .black
+                }
+            } else {
+                loader.color = .black
+            }
+            
             cell.pictureView.addSubview(loader)
             
             let text = quip.text
@@ -96,8 +106,13 @@ class PictureViewController: UIViewController, UITableViewDelegate, UITableViewD
                 var pic: UIImage
                 let isGif = path?.pathExtension.uppercased() == "GIF"
                 if isGif {
-                    let data = PictureHolder.sharedInstance.getImageDataFrom(path: text)!
-                    pic = try! UIImage(gifData: data, levelOfIntegrity: 0.5)
+                    // Some gifs don't render correctly, defense is to just show the
+                    do {
+                        let data = PictureHolder.sharedInstance.getImageDataFrom(path: text)!
+                        pic = try UIImage(gifData: data, levelOfIntegrity: 0.5)
+                    } catch {
+                        pic = PictureHolder.sharedInstance.getScaledImageFrom(path: text, for: size).fixOrientation()
+                    }
                 } else {
                     pic = PictureHolder.sharedInstance.getScaledImageFrom(path: text, for: size).fixOrientation()
                 }

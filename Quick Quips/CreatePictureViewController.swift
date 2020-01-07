@@ -144,7 +144,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
             return
         }
         
-        pictureView.image = pic
+        pictureView.setImage(pic!)
         urlForImage = localPath
         assetUrl = imageUrl
         baseUrlForImage = imageName
