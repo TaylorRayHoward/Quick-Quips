@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="T0W-pj-KvS">
-    <device id="retina4_7" orientation="portrait" appearance="dark"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
@@ -73,7 +73,7 @@
                                 <sections/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="rIn-Pa-rhs" firstAttribute="leading" secondItem="7Yh-Yv-B55" secondAttribute="leading" id="7uS-bv-ypS"/>
                             <constraint firstItem="rIn-Pa-rhs" firstAttribute="top" secondItem="7ca-7W-bkB" secondAttribute="bottom" id="Tx0-Je-VSS"/>
@@ -162,6 +162,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="yGW-ED-BIk" firstAttribute="height" secondItem="Oku-3W-9wL" secondAttribute="height" id="5SX-IT-dEJ"/>
                             <constraint firstItem="B6D-eL-aNu" firstAttribute="leading" secondItem="jaV-U2-1pc" secondAttribute="leading" id="Be5-Tc-y5b"/>
@@ -271,7 +272,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="zTO-ly-d0I" firstAttribute="leading" secondItem="Ss5-ua-XgJ" secondAttribute="leading" id="PLP-fc-hGB"/>
                             <constraint firstItem="zTO-ly-d0I" firstAttribute="top" secondItem="4kG-M7-XPJ" secondAttribute="bottom" id="UqB-vN-oxF"/>

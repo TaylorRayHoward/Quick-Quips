@@ -122,7 +122,7 @@ class CreatePictureViewController: UIViewController, UIImagePickerControllerDele
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let imageUrl = info[UIImagePickerController.InfoKey.referenceURL] as? URL
+        let imageUrl = info[UIImagePickerController.InfoKey.phAsset] as? URL
 
         let imageName = UUID().uuidString + (imageUrl?.lastPathComponent ?? "")
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
